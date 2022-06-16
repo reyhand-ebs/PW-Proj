@@ -11,24 +11,27 @@
 <body>
     <nav class="navbar navbar-expand-lg bg-dark sticky-top py-0 px-2">
         <div class="container-fluid">
-            <a href="index.php?p=home" class="navbar-brand"><img src="./img/logoheader.png" alt="" class="w-50"></a>
+            <a href="dashboardmember.php?p=home" class="navbar-brand"><img src="./img/logoheader.png" alt="" class="w-50"></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a href="index.php?p=home" class="nav-link text-white">Home</a>
+                        <a href="dashboardmember.php?p=home" class="nav-link text-white">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a href="index.php?p=explore" class="nav-link text-white">Explore</a>
+                        <a href="dashboardmember.php?p=explore" class="nav-link text-white">Explore</a>
                     </li>
                     <li class="nav-item">
-                        <a href="index.php?p=contact" class="nav-link text-white">Contact</a>
+                        <a href="dashboardmember.php?p=contact" class="nav-link text-white">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="dashboardmember.php?p=requestlist" class="nav-link text-white">Request List</a>
                     </li>
                 </ul>
             </div>
-            <a href="index.php?p=login"><button class="btn btn-lg btn-primary ms-md-3 rounded-3">Join Us</button></a>
+            <a href="dashboardmember.php?p=profilesetting"><img src="./img/default.png" alt="" class="w-25"></a>
         </div>
     </nav>
 
@@ -58,9 +61,10 @@
                 <div class="col-lg-2">
                     <h3 class="text-white">Brand</h3>
                     <ul class="list-unstyled">
-                        <li><a href="?p=home" style="color: #fff; text-decoration: none;">Home</a></li>
-                        <li><a href="?p=explore" style="color: #fff; text-decoration: none;">Explore</a></li>
-                        <li><a href="?p=contact" style="color: #fff; text-decoration: none;">Contact</a></li>
+                        <li><a href="dashboardmember.php?p=home" style="color: #fff; text-decoration: none;">Home</a></li>
+                        <li><a href="dashboardmember.php?p=explore" style="color: #fff; text-decoration: none;">Explore</a></li>
+                        <li><a href="dashboardmember.php?p=contact" style="color: #fff; text-decoration: none;">Contact</a></li>
+                        <li><a href="dashboardmember.php?p=requestlist" style="color: #fff; text-decoration: none;">Contact</a></li>
                     </ul>
                 </div>
                 <div class="col-lg-4">
@@ -90,6 +94,7 @@
                 </div>
             </div>
     </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 </body>
 
 </html>

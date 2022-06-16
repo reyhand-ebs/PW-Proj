@@ -1,5 +1,5 @@
 <?php
-include('../inc.koneksi.php');
+include('./inc.koneksi.php');
 
 class User extends Connection {
 	private $userid='';
@@ -68,8 +68,6 @@ class User extends Connection {
 	public function ValidateEmail($inputemail){
 		$sql = "SELECT * FROM user
 				WHERE email = '$inputemail'";
-
-		echo $sql;
 		$resultOne = $this->connection->query($sql);
 
 		if ($resultOne->rowCount() == 1){

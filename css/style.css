@@ -1,10 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,400;0,500;0,700;0,900;1,100;1,400;1,500;1,700;1,900&display=swap');
-/*
-Primary     : #D3EBCD
-Secondary   : #AEDBCE
-One Theme   : #839AA8
-One Theme   : #635666
-*/
+
 :root {
     --primary: #D3EBCD;
     --secondary: #AEDBCE;
@@ -28,4 +23,14 @@ One Theme   : #635666
 .card-effect:hover {
     box-shadow: none;
     transform: translateY(5px);
+}
+
+form input.form-control {
+    height: 56px;
+}
+
+form .form-control {
+    border: transparent;
+    border-radius: 0;
+    background-color: rgba(0,0,0,0.02);
 }
