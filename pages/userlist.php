@@ -14,7 +14,7 @@
         <h2 class="pb-5"><strong>User List</strong></h2>
         <table class="table table-bordered">
             <thead>
-                <tr>
+                <tr class="text-center">
                     <th scope="col">No.</th>
                     <th scope="col">User ID</th>
                     <th scope="col">Email</th>
@@ -37,12 +37,12 @@
                     $no = 1;
                     foreach ($arrayResult as $dataUser) {
                         echo '<tr>';
-                        echo '<th scope="row">' . $no . '</th>';
-                        echo '<td>' . $dataUser->userid . '</td>';
+                        echo '<th scope="row" class="text-center">' . $no . '</th>';
+                        echo '<td class="text-center">' . $dataUser->userid . '</td>';
                         echo '<td>' . $dataUser->fname . ' ' . $dataUser->lname . '</td>';
                         echo '<td>' . $dataUser->email . '</td>';
                         echo '<td>' . $dataUser->nohp . '</td>';
-                        echo '<td><a class="btn btn-warning btn-sm"  href="userlist.php?p=user&userid=' . $dataUser->userid . '">Edit</a> |
+                        echo '<td class="text-center"><a class="btn btn-warning btn-sm"  href="userlist.php?p=user&userid=' . $dataUser->userid . '">Edit</a> |
    					          <a class="btn btn-danger btn-sm"  href="dashboardadmin.php?p=deleteuser&userid=' . $dataUser->userid . '" 
 							  onclick="return confirm(\'Apakah anda yakin ingin menghapus?\')">Delete</a>
 							  </td>';
