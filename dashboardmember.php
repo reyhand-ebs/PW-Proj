@@ -27,11 +27,11 @@
                         <a href="dashboardmember.php?p=contact" class="nav-link text-white">Contact</a>
                     </li>
                     <li class="nav-item">
-                        <a href="dashboardmember.php?p=requestlist" class="nav-link text-white">Request List</a>
+                        <a href="dashboardmember.php?p=requestbook" class="nav-link text-white">Request Book</a>
                     </li>
                 </ul>
             </div>
-            <a href="dashboardmember.php?p=profilesetting"><img src="./img/default.png" alt="" class="w-25"></a>
+            <a href="dashboardmember.php?p=profilesettings"><img src="./img/default.png" alt="" class="w-25"></a>
         </div>
     </nav>
 

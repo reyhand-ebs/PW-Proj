@@ -14,7 +14,7 @@
 <body>
     <nav class="navbar navbar-expand-lg bg-dark sticky-top py-0 px-2">
         <div class="container-fluid">
-            <a href="dashboardadmin.php?p=home" class="navbar-brand"><img src="./img/logoheader.png" alt="" class="w-50"></a>
+            <a href="dashboardadmin.php?p=home" class="navbar-brand"><img src="./img/logoheader.png" alt="" class="m-3 w-25"></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -30,14 +30,14 @@
                         <a href="dashboardadmin.php?p=contact" class="nav-link text-white">Contact</a>
                     </li>
                     <li class="nav-item">
-                        <a href="dashboardadmin.php?p=requestlist" class="nav-link text-white">Request List</a>
+                        <a href="dashboardadmin.php?p=requestedlist" class="nav-link text-white">Requested List</a>
                     </li>
                     <li class="nav-item">
                         <a href="dashboardadmin.php?p=userlist" class="nav-link text-white">User List</a>
                     </li>
                 </ul>
             </div>
-            <a href="dashboardadmin.php?p=profilesetting"><img src="./img/default.png" alt="" class="w-25"></a>
+            <a href="dashboardadmin.php?p=profilesettings"><img src="./img/default.png" alt="" class="w-25"></a>
         </div>
     </nav>
 

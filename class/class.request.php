@@ -1,9 +1,8 @@
-<?php 
-    include ('../inc.koneksi.php');
-	class Request extends Connection
-	{
+<?php
+
+	class Request extends Connection {
 		private $reqid='';
-		private $iduser = '';
+		private $userid = '';
 		private $reqdate = '';
 		private $idgenre = '';
 		private $reqjudul = '';
@@ -12,7 +11,8 @@
 		private $reqhalaman = 0;
 		private $reqtahun = 0;
 		private $reqsummary = '';
-		private $status=0;
+		private $status='';
+
 		private $hasil = false;
 		private $message ='';
 
@@ -24,46 +24,56 @@
 		
 		public function __set($atribut, $value){
 			if (property_exists($this, $atribut)) {
-							$this->$atribut = $value;
+				$this->$atribut = $value;
 			}
 		}		
 		
-			public function UpdateRequest(){
-                $this->connect();
-				$sql = "UPDATE employee
-						SET status ='$this->status'
-						WHERE reqid = '$this->reqid'";
-				$this->hasil = $this->connection->exec($sql);
-					if($this->hasil)
-						$this->message ='Data berhasil diubah!';
-					else
-						$this->message ='Data gagal diubah!';
-				}
+		public function UpdateSetujuRequest(){
+			$this->connect();
+			$sql = "UPDATE request
+					SET status ='Approved'
+					WHERE reqid = '$this->reqid'";
+			$this->hasil = $this->connection->exec($sql);
+				if($this->hasil)
+					$this->message ='Data berhasil diubah!';
+				else
+					$this->message ='Data gagal diubah!';
+			}
+
+		public function DeleteRequest(){
+			$sql = "DELETE FROM request WHERE reqid=$this->reqid";
+			$this->hasil = $this->connection->exec($sql);
+	
+			if($this->hasil)
+				$this->message ='Data berhasil dihapus!';								
+			else
+				$this->message ='Data gagal dihapus!';
+		}
 		
 		public function SelectAllRequest(){
             $this->connect();
-			$sql = "SELECT * FROM request";
+			$sql = "SELECT * FROM request ORDER BY reqid";
 			$result = $this->connection->query($sql);
 
 			$arrResult = Array();
-			$cnt=0;
+			$i=0;
 			if($result->rowCount() > 0 ){
 			while ($data= $result->fetch(PDO::FETCH_OBJ))
 			{
 			$objRequest = new Request();
-			$this->reqid=$data->reqid;
-			$this->iduser=$data->iduser;
-            $this->reqdate=$data->reqdate;
-            $this->idgenre=$data->idgenre;
-			$this->reqjudul=$data->reqjudul;
-            $this->reqpenulis=$data->reqpenulis;
-            $this->reqpenerbit=$data->reqpenerbit;
-            $this->reqhalaman=$data->reqhalaman;
-            $this->reqtahun=$data->reqtahun;
-            $this->reqsummary=$data->reqsummary;
+			$objRequest->reqid=$data->reqid;
+			$objRequest->userid=$data->userid;
+            $objRequest->reqdate=$data->reqdate;
+            $objRequest->idgenre=$data->idgenre;
+			$objRequest->reqjudul=$data->reqjudul;
+            $objRequest->reqpenulis=$data->reqpenulis;
+            $objRequest->reqpenerbit=$data->reqpenerbit;
+            $objRequest->reqhalaman=$data->reqhalaman;
+            $objRequest->reqtahun=$data->reqtahun;
+            $objRequest->reqsummary=$data->reqsummary;
 
-			$arrResult[$cnt] = $objRequest;
-			$cnt++;
+			$arrResult[$i] = $objRequest;
+			$i++;
 			}
 			}
 				return $arrResult;
@@ -74,12 +84,11 @@
 				$sql = "SELECT * FROM request WHERE reqid='$this->reqid'";
 				$result = $this->connection->query($sql);
 			
-				$arrResult = Array();
 				if($result->rowCount() == 1){
 				while ($data= $result->fetch(PDO::FETCH_OBJ)) {
                     $objRequest = new Request();
 			        $this->reqid=$data->reqid;
-			        $this->iduser=$data->iduser;
+			        $this->userid=$data->userid;
                     $this->reqdate=$data->reqdate;
                     $this->idgenre=$data->idgenre;
 			        $this->reqjudul=$data->reqjudul;
