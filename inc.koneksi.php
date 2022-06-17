@@ -1,5 +1,5 @@
 <?php
-	class Connection{
+	class Connection {
 
 	private $host = "mysql:host=localhost;dbname=tubirit";
 	private $struser = "root";

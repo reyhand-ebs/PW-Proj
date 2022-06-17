@@ -1,5 +1,4 @@
 <?php
-include('./inc.koneksi.php');
 
 class User extends Connection {
 	private $userid='';
@@ -38,14 +37,8 @@ class User extends Connection {
 	}
 	
 	public function UpdateUser(){
-		$sql = "UPDATE user SET
-			email = '$this->email',
-            password='$this->password',
-			fname='$this->fname', 
-			lname='$this->lname', 
-			nohp='$this->nohp', 
-			foto='$this->foto', 
-			WHERE userid = $this->userid";
+		$sql = "UPDATE user SET email = '$this->email', password='$this->password', fname='$this->fname', lname='$this->lname', nohp='$this->nohp', foto='$this->foto', 
+		WHERE userid = $this->userid";
 		$this->hasil = $this->connection->exec($sql);
 			
 		if($this->hasil)
@@ -66,8 +59,7 @@ class User extends Connection {
 	}
 
 	public function ValidateEmail($inputemail){
-		$sql = "SELECT * FROM user
-				WHERE email = '$inputemail'";
+		$sql = "SELECT * FROM user WHERE email = '$inputemail'";
 		$resultOne = $this->connection->query($sql);
 
 		if ($resultOne->rowCount() == 1){
@@ -91,14 +83,15 @@ class User extends Connection {
 		if($result->rowCount() == 1){
 			while ($data = $result->fetch(PDO::FETCH_OBJ))
 			{
-				$this->userid = $data->userid;
-				$this->email = $data->email;
-				$this->password = $data->password;
-				$this->fname = $data->fname;
-				$this->lname = $data->lname;
-				$this->nohp = $data->nohp;
-				$this->foto = $data->foto;
-				$this->idrole = $data->idrole;
+				$objUser = new User();
+				$objUser->userid = $data->userid;
+				$objUser->email = $data->email;
+				$objUser->password = $data->password;
+				$objUser->fname = $data->fname;
+				$objUser->lname = $data->lname;
+				$objUser->nohp = $data->nohp;
+				$objUser->foto = $data->foto;
+				$objUser->idrole = $data->idrole;
 			}
 		}		
 	}
@@ -113,14 +106,14 @@ class User extends Connection {
 			while($data= $result->fetch(PDO::FETCH_OBJ))
 			{
 				$objUser = new User();
-				$this->userid = $data->userid;
-				$this->email = $data->email;
-				$this->password = $data->password;
-				$this->fname=$data->fname;
-				$this->lname=$data->lname;
-				$this->nohp=$data->nohp;
-				$this->foto=$data->foto;
-				$this->idrole=$data->idrole;
+				$objUser->userid = $data->userid;
+				$objUser->email = $data->email;
+				$objUser->password = $data->password;
+				$objUser->fname=$data->fname;
+				$objUser->lname=$data->lname;
+				$objUser->nohp=$data->nohp;
+				$objUser->foto=$data->foto;
+				$objUser->idrole=$data->idrole;
 				$arrResult[$i] = $objUser;
 				$i++;
 			}

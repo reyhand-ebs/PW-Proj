@@ -1,3 +1,6 @@
+<?php 
+ 	require_once('pages/authorization_admin.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 
