@@ -62,6 +62,7 @@ if (isset($_POST['btnLogin'])) {
 				<div class="col-md-10">
 					<label for="password">Password: </label>
 					<input type="password" class="form-control mt-2" placeholder="Password" name="password">
+					<p>Belum punya akun?<a href="index.php?p=registrasi" style="color: #4285F4">Register</a></p>
 				</div>
 				<div class="col-md-3 d-grid">
 					<button class="btn btn-primary" name="btnLogin" type="submit" value="Login">Login</button>

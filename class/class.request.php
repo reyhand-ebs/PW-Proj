@@ -1,105 +1,102 @@
 <?php
+class Request extends Connection {
+	private $reqid ='';
+	private $iduser = '';
+	private $reqdate = '';
+	private $idgenre = '';
+	private $reqjudul = '';
+	private $reqpenulis = '';
+	private $reqpenerbit = '';
+	private $reqhalaman = 0;
+	private $reqtahun = 0;
+	private $reqsummary = '';
+	private $status='';
 
-	class Request extends Connection {
-		private $reqid='';
-		private $userid = '';
-		private $reqdate = '';
-		private $idgenre = '';
-		private $reqjudul = '';
-		private $reqpenulis = '';
-		private $reqpenerbit = '';
-		private $reqhalaman = 0;
-		private $reqtahun = 0;
-		private $reqsummary = '';
-		private $status='';
+	private $hasil = false;
+	private $message ='';
 
-		private $hasil = false;
-		private $message ='';
-
-		public function __get($atribute) {
-			if (property_exists($this, $atribute)) {
-				return $this->$atribute;
-			}
+	public function __get($atribute) {
+		if (property_exists($this, $atribute)) {
+			return $this->$atribute;
 		}
+	}
 		
-		public function __set($atribut, $value){
-			if (property_exists($this, $atribut)) {
-				$this->$atribut = $value;
-			}
-		}		
+	public function __set($atribut, $value){
+		if (property_exists($this, $atribut)) {
+			$this->$atribut = $value;
+		}
+	}		
 		
-		public function UpdateSetujuRequest(){
-			$this->connect();
-			$sql = "UPDATE request
-					SET status ='Approved'
-					WHERE reqid = '$this->reqid'";
-			$this->hasil = $this->connection->exec($sql);
-				if($this->hasil)
-					$this->message ='Data berhasil diubah!';
-				else
-					$this->message ='Data gagal diubah!';
-			}
+	public function UpdateSetujuRequest(){
+		$this->connect();
+		$sql = "UPDATE request
+				SET status ='Approved'
+				WHERE reqid = '$this->reqid'";
+		$this->hasil = $this->connection->exec($sql);
+		if($this->hasil)
+			$this->message ='Data berhasil diubah!';
+		else
+			$this->message ='Data gagal diubah!';
+	}
 
-		public function DeleteRequest(){
-			$sql = "DELETE FROM request WHERE reqid=$this->reqid";
-			$this->hasil = $this->connection->exec($sql);
+	public function DeleteRequest(){
+		$sql = "DELETE FROM request WHERE reqid=$this->reqid";
+		$this->hasil = $this->connection->exec($sql);
 	
-			if($this->hasil)
-				$this->message ='Data berhasil dihapus!';								
-			else
-				$this->message ='Data gagal dihapus!';
-		}
+		if($this->hasil)
+			$this->message ='Data berhasil dihapus!';								
+		else
+			$this->message ='Data gagal dihapus!';
+	}
 		
-		public function SelectAllRequest(){
-            $this->connect();
-			$sql = "SELECT * FROM request ORDER BY reqid";
-			$result = $this->connection->query($sql);
+	public function SelectAllRequest(){
+        $this->connect();
+		$sql = "SELECT * FROM request ORDER BY reqid";
+		$result = $this->connection->query($sql);
 
-			$arrResult = Array();
-			$i=0;
-			if($result->rowCount() > 0 ){
-			while ($data= $result->fetch(PDO::FETCH_OBJ))
-			{
-			$objRequest = new Request();
-			$objRequest->reqid=$data->reqid;
-			$objRequest->userid=$data->userid;
-            $objRequest->reqdate=$data->reqdate;
-            $objRequest->idgenre=$data->idgenre;
-			$objRequest->reqjudul=$data->reqjudul;
-            $objRequest->reqpenulis=$data->reqpenulis;
-            $objRequest->reqpenerbit=$data->reqpenerbit;
-            $objRequest->reqhalaman=$data->reqhalaman;
-            $objRequest->reqtahun=$data->reqtahun;
-            $objRequest->reqsummary=$data->reqsummary;
-
-			$arrResult[$i] = $objRequest;
-			$i++;
+		$arrResult = Array();
+		$i=0;
+		if($result->rowCount() > 0 ){
+			while ($data= $result->fetch(PDO::FETCH_OBJ)) {
+				$objRequest = new Request();
+				$objRequest->reqid=$data->reqid;
+				$objRequest->iduser=$data->iduser;
+            	$objRequest->reqdate=$data->reqdate;
+            	$objRequest->idgenre=$data->idgenre;
+				$objRequest->reqjudul=$data->reqjudul;
+            	$objRequest->reqpenulis=$data->reqpenulis;
+            	$objRequest->reqpenerbit=$data->reqpenerbit;
+	            $objRequest->reqhalaman=$data->reqhalaman;
+            	$objRequest->reqtahun=$data->reqtahun;
+            	$objRequest->reqsummary=$data->reqsummary;
+				$arrResult[$i] = $objRequest;
+				$i++;
 			}
-			}
-				return $arrResult;
 		}
+		return $arrResult;
+	}
 		
-		public function SelectOneRequest(){
-            $this->connect();
-				$sql = "SELECT * FROM request WHERE reqid='$this->reqid'";
-				$result = $this->connection->query($sql);
+	public function SelectOneRequest(){
+        $this->connect();
+		$sql = "SELECT * FROM request WHERE reqid='$this->reqid'";
+		$result = $this->connection->query($sql);
 			
-				if($result->rowCount() == 1){
-				while ($data= $result->fetch(PDO::FETCH_OBJ)) {
-                    $objRequest = new Request();
-			        $this->reqid=$data->reqid;
-			        $this->userid=$data->userid;
-                    $this->reqdate=$data->reqdate;
-                    $this->idgenre=$data->idgenre;
-			        $this->reqjudul=$data->reqjudul;
-                    $this->reqpenulis=$data->reqpenulis;
-                    $this->reqpenerbit=$data->reqpenerbit;
-                    $this->reqhalaman=$data->reqhalaman;
-                    $this->reqtahun=$data->reqtahun;
-                    $this->reqsummary=$data->reqsummary;
-                    $this->reqstatus=$data->reqstatus;
-				}
-				}
+		if($result->rowCount() == 1){
+			while ($data= $result->fetch(PDO::FETCH_OBJ)) {
+                $objRequest = new Request();
+			    $objRequest->reqid=$data->reqid;
+			    $objRequest->userid=$data->userid;
+                $objRequest->reqdate=$data->reqdate;
+                $objRequest->idgenre=$data->idgenre;
+		        $objRequest->reqjudul=$data->reqjudul;
+                $objRequest->reqpenulis=$data->reqpenulis;
+                $objRequest->reqpenerbit=$data->reqpenerbit;
+                $objRequest->reqhalaman=$data->reqhalaman;
+                $objRequest->reqtahun=$data->reqtahun;
+                $objRequest->reqsummary=$data->reqsummary;
+                $objRequest->reqstatus=$data->reqstatus;
 			}
-	}	 
+		}
+	}
+}
 ?>

@@ -45,9 +45,9 @@
 				<div class="single_address">
 					<div class="row">
 						<div class="col-1">
-							<i class='btn btn-primary rounded-circle bx bx-map'></i>
+							<i class='bx bx-map text-primary'></i>
 						</div>
-						<div class="col px-5">
+						<div class="col px-3">
 							<h4>Our Address</h4>
 						</div>
 					</div>
@@ -56,9 +56,9 @@
 				<div class="single_address">
 					<div class="row">
 						<div class="col-1">
-							<i class='btn btn-primary rounded-circle bx bx-envelope'></i>
+							<i class='bx bx-envelope text-primary'></i>
 						</div>
-						<div class="col px-5">
+						<div class="col px-3">
 							<h4>Send your message</h4>
 						</div>
 					</div>
@@ -67,9 +67,9 @@
 				<div class="single_address">
 					<div class="row">
 						<div class="col-1">
-							<i class='btn btn-primary rounded-circle bx bx-phone'></i>
+							<i class='bx bx-phone text-primary'></i>
 						</div>
-						<div class="col px-5">
+						<div class="col px-3">
 							<h4>Call us on</h4>
 						</div>
 					</div>
@@ -78,9 +78,9 @@
 				<div class="single_address">
 					<div class="row">
 						<div class="col-1">
-							<i class='btn btn-primary rounded-circle bx bx-time'></i>
+							<i class='bx bx-time text-primary'></i>
 						</div>
-						<div class="col px-5">
+						<div class="col px-3">
 							<h4>Work Time</h4>
 						</div>
 					</div>

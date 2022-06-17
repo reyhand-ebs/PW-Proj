@@ -12,7 +12,7 @@
 
 <body>
     <!-- HERO -->
-    <div class="container-fluid col-xxl-11 px-3 py-5 mb-5">
+    <div class="container col-xxl-11 px-3 py-5 mb-5">
         <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
             <div class="col-10 col-md-8 col-lg-6">
                 <img src="./img/hero.png" class="d-block mx-lg-auto img-fluid" alt="Website Responsive" width="700" height="500">
@@ -27,7 +27,7 @@
         </div>
     </div>
     <!-- FITUR -->
-    <div class="container-fluid col-xxl-11 px-3 py-5 mb-5">
+    <div class="container col-xxl-11 px-3 py-5 mb-5">
         <div class="feature">
             <div class="row mb-5">
                 <h1>Membaca semakin mudah</h1>

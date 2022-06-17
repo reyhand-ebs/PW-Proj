@@ -1,3 +1,6 @@
+<?php 
+ 	require_once('pages/authorization_member.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -31,7 +34,16 @@
                     </li>
                 </ul>
             </div>
-            <a href="dashboardmember.php?p=profilesettings"><img src="./img/default.png" alt="" class="w-25"></a>
+            <div class="dropdown">
+                <a class="btn btn-secondary dropdown-toggle rounded-circle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"></a>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <li><a class="dropdown-item" href="dashboardmember.php?p=profilesettings">Profile Settings</a></li>
+                    <li><a class="dropdown-item text-danger" href="dashboardmember.php?p=logout">Log Out</a></li>
+                </ul>
+            </div>
+            <div class="w-25">
+                <img src="./img/default.png" alt="" class="w-25 p-3">
+            </div>
         </div>
     </nav>
 

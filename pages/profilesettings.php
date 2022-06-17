@@ -6,19 +6,18 @@ $objUser = new User();
 if(isset($_POST['btnUpdate'])){
 		$objUser->userid = $_POST['userid'];	 
 		$objUser->foto = $_POST['foto'];	 
-		$isSuccessUpload = false;		
+		$isSuccessUpload = false;
 		
 		if(file_exists($_FILES['foto']['tmp_name']) || is_uploaded_file($_FILES['foto']['tmp_name'])){			
 			$lokasifile = $_FILES['foto']['tmp_name'];
 			$nama_file =  $_FILES['foto']['name'];
 			$extension  = pathinfo( $_FILES["foto"]["name"], PATHINFO_EXTENSION ); 
-			$objUser->foto   = $objUser->userid . '.' . $extension; 
+			$objUser->foto   = $objUser->userid . '.' . $extension;
 			$folder = './img/';
 			$isSuccessUpload = move_uploaded_file($lokasifile, $folder.$objUser->foto);
 		}
 		else
 			$isSuccessUpload = true;
-		
 		
 		if($isSuccessUpload){	
 			$objUser->userid=$_SESSION["userid"];
