@@ -1,5 +1,4 @@
- <?php
-//include('./inc.koneksi.php');
+<?php
 	class Buku extends Connection{
 		private $idbuku ='';
 		private $judul ='';
@@ -83,17 +82,17 @@
 					$objBuku->idgenre = $data->idgenre;
 					$objBuku->cover = $data->cover;
 				}
-			}						
+			}
 		}
 
 		public function SelectAllBuku(){
-			$sql = "SELECT * FROM buku ORDER BY judul";					
+			$sql = "SELECT b.*, g.genre FROM buku b, genre g WHERE b.idgenre = g.idgenre ORDER BY judul";
 			$result = $this->connection->query($sql);
 		
 			$arrResult = Array();
 			$i=0;
 			if($result->rowCount() > 0){
-				while($data= $result->fetch(PDO::FETCH_OBJ))
+				while($data = $result->fetch(PDO::FETCH_OBJ))
 				{
 					$objBuku = new Buku();
 					$objBuku->idbuku = $data->idbuku;
@@ -104,13 +103,13 @@
 					$objBuku->halaman = $data->halaman;
 					$objBuku->tahun = $data->tahun;
 					$objBuku->summary = $data->summary;
-					$objBuku->idgenre = $data->idgenre;
 					$objBuku->cover = $data->cover;
+					$objBuku->genre = $data->genre;
 					$arrResult[$i] = $objBuku;
 					$i++;
 				}
 			}
-			return $arrResult;		
+			return $arrResult;
 		}
 
 		public function SelectAllBukuByGenre($selectgenre){

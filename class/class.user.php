@@ -1,5 +1,4 @@
 <?php
-include('./inc.koneksi.php');
 class User extends Connection {
 	private $iduser='';
 	private $email='';
@@ -97,7 +96,7 @@ class User extends Connection {
 	}
 	
 	public function SelectAllUser(){
-		$sql = "SELECT * FROM user ORDER BY iduser";
+		$sql = "SELECT * FROM user ORDER BY userid";
 		$result = $this->connection->query($sql);
 		
 		$arrResult = Array();
@@ -106,7 +105,7 @@ class User extends Connection {
 			while($data= $result->fetch(PDO::FETCH_OBJ))
 			{
 				$objUser = new User();
-				$objUser->iduser = $data->iduser;
+				$objUser->userid = $data->userid;
 				$objUser->email = $data->email;
 				$objUser->password = $data->password;
 				$objUser->fname=$data->fname;

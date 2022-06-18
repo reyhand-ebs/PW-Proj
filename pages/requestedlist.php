@@ -1,4 +1,5 @@
 <?php
+include('./inc.koneksi.php');
 require_once('./class/class.mail.php');
 require_once('./class/class.request.php');
 //require_once('./class/class.user.php');
@@ -74,7 +75,6 @@ require_once('./class/class.request.php');
             </thead>
             <tbody class="">
                 <?php
-                include('./inc.koneksi.php');
                 require_once('./class/class.request.php');
 
                 $objRequest = new Request();

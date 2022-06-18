@@ -1,5 +1,4 @@
 <?php
-include('./inc.koneksi.php');
 class Request extends Connection {
 	private $reqid ='';
 	private $iduser = '';

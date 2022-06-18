@@ -74,7 +74,7 @@
 			if(mysqli_num_rows($result) > 0){				
 				while ($data = mysqli_fetch_array($result))
 				{
-					$objProfil = new Employee(); 
+					$objProfil = new Profil(); 
 					$objProfil->email=$data['email'];
 					$objProfil->fname=$data['fname'];
 					$objProfil->lname=$data['lname'];

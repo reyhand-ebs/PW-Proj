@@ -38,12 +38,12 @@
                     foreach ($arrayResult as $dataUser) {
                         echo '<tr>';
                         echo '<th scope="row" class="text-center">' . $no . '</th>';
-                        echo '<td class="text-center">' . $dataUser->iduser . '</td>';
+                        echo '<td class="text-center">' . $dataUser->userid . '</td>';
                         echo '<td>' . $dataUser->fname . ' ' . $dataUser->lname . '</td>';
                         echo '<td>' . $dataUser->email . '</td>';
                         echo '<td>' . $dataUser->nohp . '</td>';
-                        echo '<td class="text-center"><a class="btn btn-warning btn-sm"  href="userlist.php?p=user&iduser=' . $dataUser->iduser . '">Edit</a> |
-   					          <a class="btn btn-danger btn-sm"  href="dashboardadmin.php?p=deleteuser&iduser=' . $dataUser->iduser . '" 
+                        echo '<td class="text-center"><a class="btn btn-warning btn-sm"  href="userlist.php?p=user&iduser=' . $dataUser->userid . '">Edit</a> |
+   					          <a class="btn btn-danger btn-sm"  href="dashboardadmin.php?p=deleteuser&iduser=' . $dataUser->userid . '" 
 							  onclick="return confirm(\'Apakah anda yakin ingin menghapus?\')">Delete</a>
 							  </td>';
                         echo '</tr>';
