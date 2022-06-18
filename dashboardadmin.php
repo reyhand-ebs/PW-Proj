@@ -24,10 +24,7 @@ require_once('pages/authorization_admin.php');
                         <a href="dashboardadmin.php?p=home" class="nav-link text-white">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a href="dashboardadmin.php?p=explore" class="nav-link text-white">Explore</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="dashboardadmin.php?p=contact" class="nav-link text-white">Contact</a>
+                        <a href="dashboardadmin.php?p=exploreadmin" class="nav-link text-white">Explore</a>
                     </li>
                     <li class="nav-item">
                         <a href="dashboardadmin.php?p=requestedlist" class="nav-link text-white">Requested List</a>

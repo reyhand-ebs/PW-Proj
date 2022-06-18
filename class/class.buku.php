@@ -1,6 +1,6 @@
-<?php
-	require_once('./inc.koneksi.php');
-	class buku extends Connection{
+ <?php
+//include('./inc.koneksi.php');
+	class Buku extends Connection{
 		private $idbuku ='';
 		private $judul ='';
 		private $halaman = 0;
@@ -10,6 +10,7 @@
 		private $summary='';
 		private $rating=0;
 		private $idgenre='';
+		private $cover='';
 
 		public function __get($atribute) {
 			if (property_exists($this, $atribute)) {
@@ -23,10 +24,10 @@
 			}
 		}
 
-		public function AddBuku(){
+		public function AddBuku() {
 			$sql = "INSERT INTO buku(idbuku, judul, halaman, tahun, penulis, penerbit, summary, rating, idgenre) 
-		            values ('$this->idbuku', '$this->judul', '$this->halaman', '$this->tahun', '$this->penulis', '$this->penerbit', '$this->summary', '$this->rating', '$this->idgenre');
-			$this->hasil = mysqli_query($this->connection, $sql);
+		            VALUES ('$this->idbuku', '$this->judul', '$this->halaman', '$this->tahun', '$this->penulis', '$this->penerbit', '$this->summary', '$this->rating', '$this->idgenre')";
+			$this->hasil = $this->connection->exec($sql);
 			
 			if($this->hasil)
 			   $this->message ='Data berhasil ditambahkan!';					
@@ -35,16 +36,17 @@
 		}
 
 		public function UpdateBuku(){
-			$sql = "UPDATE buku SET judul = '$this->judul'",
+			$sql = "UPDATE buku SET judul = '$this->judul',
 					penulis = '$this->penulis',
 					penerbit = '$this->penerbit',
 					rating = '$this->rating',
 					halaman = '$this->halaman',
 					tahun = '$this->tahun',
 					summary = '$this->summary',
-					idgenre = '$this->idgenre'
+					idgenre = '$this->idgenre',
+					cover = '$this->cover'
 					WHERE idbuku = $this->idbuku";
-			$this->hasil = mysqli_query($this->connection, $sql);
+			$this->hasil = $this->connection->exec($sql);
 			
 			if($this->hasil)
 			   $this->message ='Data berhasil diubah!';					
@@ -53,8 +55,8 @@
 		}
 
 		public function DeleteBuku(){
-			$sql = "DELETE FROM Buku WHERE idbuku =$this->idbuku";
-			$this->hasil = mysqli_query($this->connection, $sql);
+			$sql = "DELETE FROM buku WHERE idbuku =$this->idbuku";
+			$this->hasil = $this->connection->exec($sql);
 			
 			if($this->hasil)
 			   $this->message ='Data berhasil dihapus!';					
@@ -62,55 +64,79 @@
 			   $this->message ='Data gagal dihapus!';	
 		}
 
-		public function SelectOneBuku($onebuku){
-			$sql = "SELECT * FROM buku WHERE idBuku = $onebuku";
-			$resultOne = mysqli_query($this->connection, $sql);
-			if(mysqli_num_rows($resultOne) == 1){
-				$this->hasil = true;
-				$data = mysqli_fetch_assoc($resultOne);
-				$this->judul = $data['judul'];				
-				$this->pengarang = $data['penerbit'];	
-				$this->penulis=$data['penulis'];			
-				$this->rating = $data['rating'];	
-				$this->halaman = $data['halaman'];	
-				$this->tahun = $data['tahun'];
-				$this->summary = $data['summary'];
-				$this->idgenre = $data['idgenre'];	
-			}							
+		public function SelectOneBuku(){
+			$sql = "SELECT * FROM buku WHERE idBuku = $this->idbuku";
+			$result = $this->connection->query($sql);
+
+			if($result->rowCount() == 1){
+				while ($data = $result->fetch(PDO::FETCH_OBJ))
+				{
+					$objBuku = new Buku();
+					$objBuku->idbuku = $data->idbuku;
+					$objBuku->judul = $data->judul;
+					$objBuku->penulis = $data->penulis;
+					$objBuku->penerbit = $data->penerbit;
+					$objBuku->rating = $data->rating;
+					$objBuku->halaman = $data->halaman;
+					$objBuku->tahun = $data->tahun;
+					$objBuku->summary = $data->summary;
+					$objBuku->idgenre = $data->idgenre;
+					$objBuku->cover = $data->cover;
+				}
+			}						
 		}
 
-		public function SelectAllBuku($cari_idbuku, $cari_judul){
-			$sql = "SELECT * FROM buku ";
-			if($cari_idcategory != '')
-			{
-				$sql .= " AND idbuku = $cari_idcategory";
+		public function SelectAllBuku(){
+			$sql = "SELECT * FROM buku ORDER BY judul";					
+			$result = $this->connection->query($sql);
+		
+			$arrResult = Array();
+			$i=0;
+			if($result->rowCount() > 0){
+				while($data= $result->fetch(PDO::FETCH_OBJ))
+				{
+					$objBuku = new Buku();
+					$objBuku->idbuku = $data->idbuku;
+					$objBuku->judul = $data->judul;
+					$objBuku->penulis = $data->penulis;
+					$objBuku->penerbit = $data->penerbit;
+					$objBuku->rating = $data->rating;
+					$objBuku->halaman = $data->halaman;
+					$objBuku->tahun = $data->tahun;
+					$objBuku->summary = $data->summary;
+					$objBuku->idgenre = $data->idgenre;
+					$objBuku->cover = $data->cover;
+					$arrResult[$i] = $objBuku;
+					$i++;
+				}
 			}
-			if($cari_deskripsi != '')
-			{
-				$sql .= " AND judul like '%$cari_deskripsi%'";
-			}
-			
-			$sql .= " ORDER BY idbuku ASC";
-						
-			$result = mysqli_query($this->connection, $sql);
+			return $arrResult;		
+		}
+
+		public function SelectAllBukuByGenre($selectgenre){
+			$sql = "SELECT * FROM buku WHERE idgenre =(SELECT idgenre FROM genre WHERE namagenre=$selectgenre)";				
+			$result = $this->connection->query($sql);
+				
 			$arrResult = Array();
 			$cnt=0;
-			while ($data = mysqli_fetch_array($result))
-			{
-				$objBuku = new Buku(); 
-				$objBuku->idbuku=$data['idbuku'];
-				$objBuku->judul=$data['judul'];
-				$objBuku->penulis=$data['penulis'];
-				$objBuku->penerbit=$data['penerbit'];
-				$objBuku->rating=$data['rating'];
-				$objBuku->halaman=$data['halaman'];
-				$objBuku->summary=$data['summary'];
-				$objBuku->tahun=$data['tahun'];
-				$objBuku->idgenre=$data['idgenre'];
-				$arrResult[$cnt] = $objMenu;
-				$cnt++;
+			if($result->rowCount() > 0){				
+				while ($data= $result->fetch(PDO::FETCH_OBJ))
+				{
+					$objBuku = new Buku();
+					$objBuku->judul = $data->judul;
+					$objBuku->penulis = $data->penulis;
+					$objBuku->penerbit = $data->penerbit;
+					$objBuku->rating = $data->rating;
+					$objBuku->halaman = $data->halaman;
+					$objBuku->tahun = $data->tahun;
+					$objBuku->summary = $data->summary;
+					$objBuku->idgenre = $data->idgenre;
+					$objBuku->cover = $data->cover;
+					$arrResult[$cnt] = $objBuku;
+					$cnt++;
+				}
 			}
-			return $arrResult;			
-		}
+			return $arrResult;
+		} 
 	}
 ?>

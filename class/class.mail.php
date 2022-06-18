@@ -17,7 +17,7 @@ class mail
 		$mail->Username = "chikal.m21@gmail.com";
 		$mail->Password = "bdbxovyuebdputlz";
 		$mail->From = "chikal.m21@gmail.com";
-		$mail->FromName = "Admin tubirit";
+		$mail->FromName = "Admin Tubirit";
 		$mail->SMTPOptions = array(
 				'ssl' => array(
 				'verify_peer' => false,

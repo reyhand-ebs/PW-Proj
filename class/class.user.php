@@ -1,7 +1,7 @@
 <?php
-
+include('./inc.koneksi.php');
 class User extends Connection {
-	private $userid='';
+	private $iduser='';
 	private $email='';
 	private $password='';
 	private $fname='';
@@ -38,7 +38,7 @@ class User extends Connection {
 	
 	public function UpdateUser(){
 		$sql = "UPDATE user SET email = '$this->email', password='$this->password', fname='$this->fname', lname='$this->lname', nohp='$this->nohp', foto='$this->foto', 
-		WHERE userid = $this->userid";
+		WHERE iduser = $this->iduser";
 		$this->hasil = $this->connection->exec($sql);
 			
 		if($this->hasil)
@@ -49,7 +49,7 @@ class User extends Connection {
 		
 		
 	public function DeleteUser(){
-		$sql = "DELETE FROM user WHERE userid=$this->userid";
+		$sql = "DELETE FROM user WHERE iduser=$this->iduser";
 		$this->hasil = $this->connection->exec($sql);
 
 		if($this->hasil)
@@ -65,7 +65,7 @@ class User extends Connection {
 		if ($resultOne->rowCount() == 1){
 			while ($data = $resultOne->fetch(PDO::FETCH_OBJ)) {
 				$this->hasil = true;
-				$this->userid = $data->userid;
+				$this->iduser = $data->iduser;
 				$this->email = $data->email;
 				$this->password=$data->password;
 				$this->fname=$data->fname;
@@ -77,14 +77,14 @@ class User extends Connection {
 	}
 	
 	public function SelectOneUser(){
-		$sql = "SELECT * FROM user WHERE userid = $this->userid";
+		$sql = "SELECT * FROM user WHERE iduser = $this->iduser";
 		$result = $this->connection->query($sql);
 		
 		if($result->rowCount() == 1){
 			while ($data = $result->fetch(PDO::FETCH_OBJ))
 			{
 				$objUser = new User();
-				$objUser->userid = $data->userid;
+				$objUser->iduser = $data->iduser;
 				$objUser->email = $data->email;
 				$objUser->password = $data->password;
 				$objUser->fname = $data->fname;
@@ -97,7 +97,7 @@ class User extends Connection {
 	}
 	
 	public function SelectAllUser(){
-		$sql = "SELECT * FROM user ORDER BY userid";
+		$sql = "SELECT * FROM user ORDER BY iduser";
 		$result = $this->connection->query($sql);
 		
 		$arrResult = Array();
@@ -106,7 +106,7 @@ class User extends Connection {
 			while($data= $result->fetch(PDO::FETCH_OBJ))
 			{
 				$objUser = new User();
-				$objUser->userid = $data->userid;
+				$objUser->iduser = $data->iduser;
 				$objUser->email = $data->email;
 				$objUser->password = $data->password;
 				$objUser->fname=$data->fname;
@@ -123,9 +123,9 @@ class User extends Connection {
 	
 	public function SelectAllUserByUserid($currentuserid){
 		if ($currentuserid == NULL)
-			$sql = "SELECT * FROM user WHERE userid IS NULL";
+			$sql = "SELECT * FROM user WHERE iduser IS NULL";
 		else
-			$sql = "SELECT * FROM user WHERE userid = $currentuserid";				
+			$sql = "SELECT * FROM user WHERE iduser = $currentuserid";				
 		$result = $this->connection->query($sql);
 			
 		$arrResult = Array();
@@ -134,7 +134,7 @@ class User extends Connection {
 			while ($data= $result->fetch(PDO::FETCH_OBJ))
 			{
 				$objUser = new User(); 
-				$objUser->userid = $data->userid;
+				$objUser->iduser = $data->iduser;
 				$objUser->email = $data->email;
 				$objUser->password = $data->password;
 				$objUser->fname=$data->fname;

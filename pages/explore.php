@@ -1,6 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-
 <head>
     <title>Tubirit | Explore</title>
 
@@ -32,17 +29,19 @@
                 </ul>
             </div>
         </div>
+
+        <!--RECOMMENDATION LIST-->
         <div class="container">
             <div class="row">
                 <div class="col card mb-3 mx-2">
                     <div class="row g-0">
                         <div class="col-md-6 py-2">
-                            <img src="../img/books/b001.jpg" class="img-fluid rounded-start" alt="...">
+                            <img src="./img/books/b001.jpg" class="img-fluid rounded-start" alt="...">
                         </div>
                         <div class="col-md-6">
                             <div class="card-body">
-                                <h5 class="card-title">Hujan</h5>
-                                <h6 class="card-title">Tere Liye</h6>
+                                <h5 class="card-title"><?php echo $objBuku->judul; ?></h5>
+                                <h6 class="card-title"><?php echo $objBuku->penulis; ?></h6>
                                 <br>
                                 <p>Science-Fiction</br>Gramedia</br>320 pages</br>2016</p>
                             </div>
