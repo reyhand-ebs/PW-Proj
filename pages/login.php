@@ -12,7 +12,9 @@ if (isset($_POST['btnLogin'])) {
 
 	if ($objUser->hasil) {
 
-		if ($password == $objUser->password) {
+		$ismatch = password_verify($password, $objUser->password);
+
+		if ($ismatch) {
 			if (!isset($_SESSION)) {
 				session_start();
 			}
