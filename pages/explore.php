@@ -12,21 +12,22 @@
         <div class="container text-start">
             <h1>What book do you want to read today?</h1>
             <div class="btn-group p-4">
-                <button id="button" class="btn btn-success dropdown-toggle" data-bs-toggle="dropdown">
+                <button id="button" class="btn btn-success dropdown-toggle" data-bs-toggle="dropdown" name="selectgenre">
                     Sort/ Group by
                 </button>
                 <ul class="dropdown-menu" role="menu">
-                    <li><a class="dropdown-item">A-Z</a></li>
-                    <?php
-                    include('./inc.koneksi.php');
-                    require_once('./class/class.genre.php');
-    
-                    $objGenre = new Genre();
-                    $arrayResult = $objGenre->SelectAllGenre();
-                    foreach ($arrayResult as $dataGenre) {
-                        echo '<li>'.'<a class="dropdown-item" href="'.$dataGenre->idgenre'.">."'$dataGenre->genre'."</a></li>';
-                    }
-                    ?>
+                    <li><a class="dropdown-item" href="#">A-Z</a></li>
+                        <?php
+                            include('./inc.koneksi.php');
+                            require_once('./class/class.genre.php');
+            
+                            $objGenre = new Genre();
+                            $arrayResult = $objGenre->SelectAllGenre();
+
+                            foreach ($arrayResult as $dataGenre) {
+                                echo '<li><a class="dropdown-item" href="#">' . $dataGenre->idgenre . ' - '.$dataGenre->namagenre . '</a></li>';
+                            }
+                        ?>
                 </ul>
             </div>
         </div>
@@ -42,27 +43,27 @@
                 $arrayResult = $objBuku->SelectAllBuku();
 
                 if (count($arrayResult) == 0) {
-                    echo '<tr><td colspan="6">Tidak ada data!</td></tr>';
+                    echo '<p>Tidak ada data!</p>';
                 } else {
                     $no = 1;
                     foreach ($arrayResult as $dataBuku) {
                 ?>
-                <div class='col card mb-3 mx-2'>
-                    <div class='row g-0'>
-                        <div class='col-md-6 py-2'>
-                            <img src="<?php echo $dataBuku->cover;?>" class='img-fluid rounded-start' alt='<?php echo $dataBuku->judul;?>'>
+                <div class="col card mb-3 mx-2">
+                    <div class="row g-0">
+                        <div class="col-md-6 py-2">
+                            <img src="./img/books/<?php echo $dataBuku->cover;?>" class="img-fluid rounded-start" alt="<?php echo $dataBuku->judul;?>">
                         </div>
-                        <div class='col-md-6'>
-                            <div class='card-body'>
-                                <h5 class='card-title'><?php echo $dataBuku->judul; ?></h5>
-                                <h6 class='card-title'><?php echo $dataBuku->penulis; ?></h6>
+                        <div class="col-md-6">
+                            <div class="card-body">
+                                <h5 class="card-title"><?php echo $dataBuku->judul; ?></h5>
+                                <h6 class="card-title"><?php echo $dataBuku->penulis; ?></h6>
                                 <br>
                                 <p><?php echo $dataBuku->genre;?></br><?php echo $dataBuku->penerbit;?></br><?php echo $dataBuku->halaman?> pages</br><?php echo $dataBuku->tahun;?></p>
                             </div>
                         </div>
-                        <p class='card-text'><?php echo $dataBuku->summary;?></p>
-                        <div class='card-body'>
-                            <div class='float-right btn-group btn-group-sm'>
+                        <p class="card-text"><?php echo $dataBuku->summary;?></p>
+                        <div class="card-body">
+                            <div class="float-right btn-group btn-group-sm">
                                 <a href='#' class='btn btn-primary tooltips' data-placement='top' data-toggle='tooltip' data-original-title='dit'><i class='bx bx-pencil'></i></a>
                                 <a href='#' class='btn btn-secondary tooltips' data-placement='top' data-toggle='tooltip' data-original-title='Delete'><i class='bx bx-trash'></i></a>
                             </div>

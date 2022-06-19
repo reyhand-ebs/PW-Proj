@@ -1,4 +1,5 @@
 <?php
+//include('.inc.koneksi.php');
 	class Buku extends Connection{
 		private $idbuku ='';
 		private $judul ='';
@@ -10,6 +11,7 @@
 		private $rating=0;
 		private $idgenre='';
 		private $cover='';
+		private $namagenre ='';
 
 		public function __get($atribute) {
 			if (property_exists($this, $atribute)) {
@@ -44,7 +46,7 @@
 					summary = '$this->summary',
 					idgenre = '$this->idgenre',
 					cover = '$this->cover'
-					WHERE idbuku = $this->idbuku";
+					WHERE idbuku = '$this->idbuku'";
 			$this->hasil = $this->connection->exec($sql);
 			
 			if($this->hasil)
@@ -64,9 +66,10 @@
 		}
 
 		public function SelectOneBuku(){
-			$sql = "SELECT * FROM buku WHERE idBuku = $this->idbuku";
+			$sql = "SELECT * FROM buku WHERE idbuku = '$this->idbuku'";
 			$result = $this->connection->query($sql);
 
+			$arrResult = Array();
 			if($result->rowCount() == 1){
 				while ($data = $result->fetch(PDO::FETCH_OBJ))
 				{
@@ -81,12 +84,13 @@
 					$objBuku->summary = $data->summary;
 					$objBuku->idgenre = $data->idgenre;
 					$objBuku->cover = $data->cover;
+					$arrResult = $objBuku;
 				}
 			}
 		}
 
 		public function SelectAllBuku(){
-			$sql = "SELECT b.*, g.genre FROM buku b, genre g WHERE b.idgenre = g.idgenre ORDER BY judul";
+			$sql = "SELECT b.*, g.namagenre FROM buku b, genre g WHERE b.idgenre = g.idgenre ORDER BY judul";
 			$result = $this->connection->query($sql);
 		
 			$arrResult = Array();
@@ -104,7 +108,8 @@
 					$objBuku->tahun = $data->tahun;
 					$objBuku->summary = $data->summary;
 					$objBuku->cover = $data->cover;
-					$objBuku->genre = $data->genre;
+					$objBuku->idgenre = $data->idgenre;
+					$objBuku->namagenre = $data->namagenre;
 					$arrResult[$i] = $objBuku;
 					$i++;
 				}
@@ -131,6 +136,7 @@
 					$objBuku->summary = $data->summary;
 					$objBuku->idgenre = $data->idgenre;
 					$objBuku->cover = $data->cover;
+					$objBuku->namagenre = $data->namagenre;
 					$arrResult[$cnt] = $objBuku;
 					$cnt++;
 				}

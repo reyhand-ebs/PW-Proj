@@ -1,11 +1,13 @@
 <?php 
 include('./inc.koneksi.php');
 require_once('./class/class.buku.php');
+require_once('./class/class.genre.php');
 $objBuku = new Buku(); 
-$bukuList = $objBuku->SelectAllBuku();
+$objGenre = new Genre();
+$genreList = $objGenre->SelectAllGenre();
 
-if(isset($_POST['btnSubmit'])){	
-    $objBuku->idBuku = $_POST['idbuku'];	 
+if(isset($_POST['idbuku'])){	
+    $objBuku->idbuku = $_POST['idbuku'];	 
 	$objBuku->judul = $_POST['judul'];	
     $objBuku->penulis = $_POST['penulis'];
 	$objBuku->penerbit = $_POST['penerbit'];	
@@ -30,7 +32,6 @@ if(isset($_POST['btnSubmit'])){
 else if(isset($_GET['idbuku'])){	
 	$objBuku->idbuku = $_GET['idbuku'];	
 	$objBuku->SelectOneBuku();
-
 }
 ?>
 
@@ -45,7 +46,7 @@ else if(isset($_GET['idbuku'])){
 <body>
 <div class="container">  
 <div class="col-md-6">			
-  <h4 class="title"><span class="text"><strong>Edit Profil Buku</strong></span></h4>
+  <h4 class="title py-4"><span class="text"><strong>Edit Profil Buku</strong></span></h4>
     <form action="" method="post">
 	<table class="table" border="0">
         <tr>
@@ -65,7 +66,7 @@ else if(isset($_GET['idbuku'])){
             <select name="genre" class="form-control">
                 <option value="">--Please select genre--</option>
                 <?php		
-                    foreach ($bukuList as $buku){ 								
+                    foreach ($genreList as $genre){ 								
                         if($objBuku->idgenre == $genre->idgenre)				
                             echo '<option selected="true" value='.$genre->idgenre.'>'.$genre->namagenre.'</option>';
                         else
@@ -74,8 +75,33 @@ else if(isset($_GET['idbuku'])){
                 ?>	
                 </select>	
             </td>
+        </tr>
+        <tr>
+            <td>Penulis</td>
+            <td>:</td>
+            <td><input type="text" class="form-control" name="penulis" value="<?php echo $objBuku->penulis; ?>"></td>
+        </tr>
+        <tr>
+            <td>Penerbit</td>
+            <td>:</td>
+            <td><input type="text" class="form-control" name="penerbit" value="<?php echo $objBuku->penerbit; ?>"></td>
+        </tr>
+        <tr>
+            <td>Halaman</td>
+            <td>:</td>
+            <td><input type="text" class="form-control" name="halaman" value="<?php echo $objBuku->halaman; ?>"></td>
+        </tr>
+        <tr>
+            <td>Tahun</td>
+            <td>:</td>
+            <td><input type="text" class="form-control" name="tahun" value="<?php echo $objBuku->tahun; ?>"></td>
         </tr>	
-        
+        <tr>
+            <td>Summary</td>
+            <td>:</td>
+            <td><textarea class="form-control" name="tahun"><?php echo $objBuku->summary; ?></textarea></td>
+        </tr>	
+
         <tr>
         <td colspan="2"></td>	
         <td><input type="submit" class="btn btn-success" value="Save" name="btnSubmit">

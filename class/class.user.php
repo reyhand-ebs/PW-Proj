@@ -76,14 +76,14 @@ class User extends Connection {
 	}
 	
 	public function SelectOneUser(){
-		$sql = "SELECT * FROM user WHERE iduser = $this->iduser";
+		$sql = "SELECT * FROM user WHERE userid = $this->userid";
 		$result = $this->connection->query($sql);
 		
 		if($result->rowCount() == 1){
 			while ($data = $result->fetch(PDO::FETCH_OBJ))
 			{
 				$objUser = new User();
-				$objUser->iduser = $data->iduser;
+				$objUser->userid = $data->userid;
 				$objUser->email = $data->email;
 				$objUser->password = $data->password;
 				$objUser->fname = $data->fname;
@@ -122,9 +122,9 @@ class User extends Connection {
 	
 	public function SelectAllUserByUserid($currentuserid){
 		if ($currentuserid == NULL)
-			$sql = "SELECT * FROM user WHERE iduser IS NULL";
+			$sql = "SELECT * FROM user WHERE userid IS NULL";
 		else
-			$sql = "SELECT * FROM user WHERE iduser = $currentuserid";				
+			$sql = "SELECT * FROM user WHERE userid = $currentuserid";				
 		$result = $this->connection->query($sql);
 			
 		$arrResult = Array();
@@ -133,7 +133,7 @@ class User extends Connection {
 			while ($data= $result->fetch(PDO::FETCH_OBJ))
 			{
 				$objUser = new User(); 
-				$objUser->iduser = $data->iduser;
+				$objUser->userid = $data->userid;
 				$objUser->email = $data->email;
 				$objUser->password = $data->password;
 				$objUser->fname=$data->fname;

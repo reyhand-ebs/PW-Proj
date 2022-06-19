@@ -1,4 +1,6 @@
 <?php
+//include('./inc.koneksi.php');
+
 	class Genre extends Connection {
 		private $idgenre = 0;
 		private $genre = '';
@@ -25,8 +27,8 @@
 				while($data= $result->fetch(PDO::FETCH_OBJ))
 				{
 					$objGenre = new Genre();
-					$objGenre->idbuku = $data->idgenre;
-					$objGenre->judul = $data->genre;
+					$objGenre->idgenre = $data->idgenre;
+					$objGenre->namagenre = $data->namagenre;
 					$arrResult[$i] = $objGenre;
 					$i++;
 				}
@@ -42,8 +44,8 @@
 				while ($data = $result->fetch(PDO::FETCH_OBJ))
 				{
 					$objGenre = new Genre();
-					$objGenre->idbuku = $data->idgenre;
-					$objGenre->judul = $data->genre;
+					$objGenre->idgenre = $data->idgenre;
+					$objGenre->namagenre = $data->namagenre;
 				}
 			}
 		}
