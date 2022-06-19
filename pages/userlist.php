@@ -26,7 +26,6 @@
             </thead>
             <tbody class="">
                 <?php
-                include('./inc.koneksi.php');
                 require_once('./class/class.user.php');
 
                 $objUser = new User();

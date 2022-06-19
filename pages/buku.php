@@ -14,7 +14,7 @@ if(isset($_POST['btnSubmit'])){
     $objBuku->halaman = $_POST['halaman'];
     $objBuku->tahun = $_POST['tahun'];	
     $objBuku->summary = $_POST['summary'];
-    $objBuku->idgenre = $_POST['idgenre'];		 
+    $objBuku->idgenre = $_POST['idgenre'];	 
 				
 	if(isset($_GET['idbuku'])) {
 		$objBuku->idbuku = $_GET['idbuku'];
@@ -61,13 +61,13 @@ if(isset($_POST['btnSubmit'])){
             <td>:</td>
             <td>
             <select name="genre" class="form-control">
-                <option value=""><?php echo $objBuku->namagenre?></option>
+                <option value="<?php echo $objBuku->namagenre?>"><?php echo $objBuku->namagenre?></option>
                 <?php		
                     foreach ($genreList as $genre){
                         if($objBuku->idgenre == $genre->idgenre)
-                            echo '<option selected="true" value='.$genre->idgenre.'>'.$genre->namagenre.'</option>';
+                            echo '<option selected="true" value='.$objBuku->namagenre.'>'.$genre->namagenre.'</option>';
                         else
-                            echo '<option value='.$genre->idgenre.'>'.$genre->namagenre.'</option>';
+                            echo '<option value='.$objBuku->namagenre.'>'.$genre->namagenre.'</option>';
                     } 
                 ?>	
                 </select>	

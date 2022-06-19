@@ -1,5 +1,4 @@
 <?php
-include('./inc.koneksi.php');
 require_once('./class/class.buku.php'); 		
 
 if(isset($_GET['idbuku'])){	

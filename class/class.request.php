@@ -2,7 +2,7 @@
 class Request extends Connection {
 	private $reqid ='';
 	private $reqdate = '';
-	private $userid = '';
+	private $iduser = '';
 	private $idgenre = '';
 	private $reqjudul = '';
 	private $reqpenulis = '';
@@ -71,7 +71,7 @@ class Request extends Connection {
 			while ($data= $result->fetch(PDO::FETCH_OBJ)) {
 				$objRequest = new Request();
 				$objRequest->reqid=$data->reqid;
-				$objRequest->userid=$data->userid;
+				$objRequest->iduser=$data->iduser;
             	$objRequest->reqdate=$data->reqdate;
             	$objRequest->idgenre=$data->namagenre;
 				$objRequest->reqjudul=$data->reqjudul;

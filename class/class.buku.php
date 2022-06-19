@@ -12,6 +12,7 @@
 		private $idgenre='';
 		private $cover='';
 		private $namagenre ='';
+		private $message='';
 
 		public function __get($atribute) {
 			if (property_exists($this, $atribute)) {

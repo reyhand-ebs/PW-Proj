@@ -1,5 +1,4 @@
 <?php
-include('./inc.koneksi.php');
 require_once('./class/class.mail.php');
 require_once('./class/class.request.php');
 //require_once('./class/class.user.php');
