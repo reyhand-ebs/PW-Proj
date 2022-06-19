@@ -27,7 +27,9 @@
                     $arrayResult = $objGenre->SelectAllGenre();
 
                     foreach ($arrayResult as $dataGenre) {
-                        echo '<li><a class="dropdown-item" href="#">' . $dataGenre->idgenre . ' - ' . $dataGenre->namagenre . '</a></li>';
+                        ?>
+                        <li><a class="dropdown-item" href="#"><?php echo $dataGenre->namagenre; ?></a></li>
+                        <?php
                     }
                     ?>
                 </ul>
@@ -38,7 +40,6 @@
         <div class="container">
             <div class="row">
                 <?php
-                include('./inc.koneksi.php');
                 require_once('./class/class.buku.php');
 
                 $objBuku = new Buku();
@@ -63,13 +64,7 @@
                                         <p><?php echo $dataBuku->namagenre; ?><br><?php echo $dataBuku->penerbit; ?><br><?php echo $dataBuku->halaman; ?> halaman<br><?php echo $dataBuku->tahun; ?></p>
                                     </div>
                                 </div>
-                                <p class="card-text"><?php echo $dataBuku->summary; ?></p>
-                                <div class="card-body">
-                                    <div class="float-right btn-group btn-group-sm">
-                                        <a href="dashboardadmin.php?p=buku&idbuku=<?php echo $dataBuku->idbuku; ?>" name="btnSubmit" class="btn btn-primary tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Edit"><i class="bx bx-pencil"></i></a>
-                                        <a href="dashboardadmin.php?p=deletebuku&idbuku=<?php echo $dataBuku->idbuku; ?>" class="btn btn-secondary tooltips" onclick="return confirm(\'Apakah anda yakin ingin menghapus?')" data-placement="top" data-toggle="tooltip" data-original-title="Delete"><i class="bx bx-trash"></i></a>
-                                    </div>
-                                </div>
+                                <p class="card-text"><?php echo $dataBuku->summary; ?></p><br>
                             </div>
                         </div>
                 <?php
