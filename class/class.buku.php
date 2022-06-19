@@ -27,7 +27,7 @@
 
 		public function AddBuku() {
 			$sql = "INSERT INTO buku(idbuku, judul, halaman, tahun, penulis, penerbit, summary, rating, idgenre) 
-		            VALUES ('$this->idbuku', '$this->judul', '$this->halaman', '$this->tahun', '$this->penulis', '$this->penerbit', '$this->summary', '$this->rating', '$this->idgenre')";
+		            VALUES ('', '$this->judul', '$this->halaman', '$this->tahun', '$this->penulis', '$this->penerbit', '$this->summary', '$this->rating', '$this->idgenre')";
 			$this->hasil = $this->connection->exec($sql);
 			
 			if($this->hasil)
@@ -37,16 +37,8 @@
 		}
 
 		public function UpdateBuku(){
-			$sql = "UPDATE buku SET judul = '$this->judul',
-					penulis = '$this->penulis',
-					penerbit = '$this->penerbit',
-					rating = '$this->rating',
-					halaman = '$this->halaman',
-					tahun = '$this->tahun',
-					summary = '$this->summary',
-					idgenre = '$this->idgenre',
-					cover = '$this->cover'
-					WHERE idbuku = '$this->idbuku'";
+			$sql = "UPDATE buku SET judul = '$this->judul', penulis = '$this->penulis', penerbit = '$this->penerbit', rating = '$this->rating', halaman = '$this->halaman', tahun = '$this->tahun', summary = '$this->summary', idgenre = '$this->idgenre', cover = '$this->cover'
+			WHERE idbuku = '$this->idbuku' AND idgenre IN(SELECT idgenre FROM genre WHERE namagenre = '$this->namagenre')";
 			$this->hasil = $this->connection->exec($sql);
 			
 			if($this->hasil)
@@ -56,7 +48,7 @@
 		}
 
 		public function DeleteBuku(){
-			$sql = "DELETE FROM buku WHERE idbuku =$this->idbuku";
+			$sql = "DELETE FROM buku WHERE idbuku = '$this->idbuku'";
 			$this->hasil = $this->connection->exec($sql);
 			
 			if($this->hasil)
@@ -66,24 +58,23 @@
 		}
 
 		public function SelectOneBuku(){
-			$sql = "SELECT * FROM buku WHERE idbuku = '$this->idbuku'";
+			$sql = "SELECT b.*, g.namagenre FROM buku b, genre g WHERE b.idgenre = g.idgenre AND idbuku = '$this->idbuku'";
 			$result = $this->connection->query($sql);
 
 			$arrResult = Array();
 			if($result->rowCount() == 1){
 				while ($data = $result->fetch(PDO::FETCH_OBJ))
 				{
-					$objBuku = new Buku();
-					$objBuku->idbuku = $data->idbuku;
-					$objBuku->judul = $data->judul;
-					$objBuku->penulis = $data->penulis;
-					$objBuku->penerbit = $data->penerbit;
-					$objBuku->rating = $data->rating;
-					$objBuku->halaman = $data->halaman;
-					$objBuku->tahun = $data->tahun;
-					$objBuku->summary = $data->summary;
-					$objBuku->namagenre = $data->namagenre;
-					$objBuku->cover = $data->cover;
+					$this->idbuku = $data->idbuku;
+					$this->judul = $data->judul;
+					$this->penulis = $data->penulis;
+					$this->penerbit = $data->penerbit;
+					$this->rating = $data->rating;
+					$this->halaman = $data->halaman;
+					$this->tahun = $data->tahun;
+					$this->summary = $data->summary;
+					$this->namagenre = $data->namagenre;
+					$this->cover = $data->cover;
 				}
 			}
 		}

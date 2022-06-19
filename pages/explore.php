@@ -27,7 +27,9 @@
                     $arrayResult = $objGenre->SelectAllGenre();
 
                     foreach ($arrayResult as $dataGenre) {
-                        echo '<li><a class="dropdown-item" href="#">' . $dataGenre->idgenre . ' - ' . $dataGenre->namagenre . '</a></li>';
+                        ?>
+                        <li><a class="dropdown-item" href="#"><?php echo $dataGenre->namagenre; ?></a></li>
+                        <?php
                     }
                     ?>
                 </ul>
@@ -38,7 +40,6 @@
         <div class="container">
             <div class="row">
                 <?php
-                include('./inc.koneksi.php');
                 require_once('./class/class.buku.php');
 
                 $objBuku = new Buku();

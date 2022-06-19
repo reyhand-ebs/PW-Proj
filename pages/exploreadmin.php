@@ -14,7 +14,7 @@
         <div class="container text-start">
             <h1>Hello Admin!</h1>
             <div class="card-body p-2">
-                <a href="form_add.php" class="btn btn-success">Tambah</a>
+                <a href="dashboardadmin.php?p=buku" class="btn btn-success">Tambah</a>
             </div>
             <div class="btn-group p-2">
                 <button id="button" class="btn btn-success dropdown-toggle" data-bs-toggle="dropdown" name="selectgenre">
