@@ -37,7 +37,7 @@
         </div>
 
         <!--RECOMMENDATION LIST-->
-        <div class="container">
+        <div class="container-fluid mx-5 ms-5">
             <div class="row">
                 <?php
                 require_once('./class/class.buku.php');
@@ -51,7 +51,7 @@
                     $no = 1;
                     foreach ($arrayResult as $dataBuku) {
                 ?>
-                        <div class="col card mb-3 mx-2">
+                        <div class="col-3 card mb-3 mx-2">
                             <div class="row g-0">
                                 <div class="col-sm-6 py-2">
                                     <img class="img-fluid rounded" alt="<?php echo $dataBuku->judul; ?>" src="./img/books/<?php echo $dataBuku->cover; ?>">
@@ -75,7 +75,6 @@
             </div>
         </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 </body>
 
 </html>

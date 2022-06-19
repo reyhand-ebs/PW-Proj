@@ -1,4 +1,5 @@
 <?php
+include('./inc.koneksi.php');
 require_once('./class/class.user.php'); 		
 require_once('./class/class.mail.php'); 		
 
@@ -13,9 +14,10 @@ if(isset($_POST['btnSubmit'])){
 	else
 	{	
 		$objUser->email=$_POST["email"];
-		$password = $_POST['password'];	
-		$objUser->password = password_hash($password, PASSWORD_DEFAULT);		
-		$objUser->name=$_POST["name"];
+		$objUser->password = $_POST['password'];	
+		//$objUser->password = password_hash($password, PASSWORD_DEFAULT);		
+		$objUser->fname=$_POST['fname'];
+		$objUser->lname=$_POST['lname'];
 		$objUser->AddUser();		
 		
 		if($objUser->hasil){			
@@ -23,11 +25,11 @@ if(isset($_POST['btnSubmit'])){
 			$header = "Registrasi berhasil";
 			$body = '<span style="font-family: Arial, Helvetica, sans-serif; font-size: 15px; color: #57697e;">
 					Selamat <b>' .$objUser->name.'</b>, anda telah terdaftar pada Tubirit.<br>
-					Berikut ini informasi akun Anda:<br>
+					Berikut ini informasi akun Anda<br>
 					</span>
 					<span style="font-family: Arial, Helvetica, sans-serif; font-size: 15px; color: #57697e;">
-						Username : '.$objUser->email.'<br>
-						Password : '.$password.'
+						Email : '.$objUser->email.'<br>
+						Password : '.$objUser->password.'
 					</span>';
 			$footer ='Silakan login untuk mengakses sistem.';
 										
@@ -36,7 +38,7 @@ if(isset($_POST['btnSubmit'])){
 			$message = str_replace("#footer#",$footer,$message);
 					 						
 			
-			Mail::SendMail($objUser->email, $objUser->name, 'Registrasi berhasil.', $message);	
+			Mail::SendMail($objUser->email, $objUser->name, 'Registrasi Berhasil', $message);	
 			echo "<script> alert('Registrasi berhasil'); </script>";
 			echo '<script> window.location="index.php?p=login"; </script>'; 				
 		}					

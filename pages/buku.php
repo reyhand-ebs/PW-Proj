@@ -57,11 +57,6 @@ if(isset($_POST['btnSubmit'])){
             <td><input type="text" class="form-control" name="judul" value="<?php echo $objBuku->judul; ?>"></td>
         </tr>	
         <tr>
-            <td>Penulis</td>
-            <td>:</td>
-            <td><input type="text" class="form-control" name="penulis" value="<?php echo $objBuku->penulis; ?>"></td>
-        </tr>	
-        <tr>
             <td>Genre</td>
             <td>:</td>
             <td>

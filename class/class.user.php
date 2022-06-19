@@ -8,6 +8,7 @@ class User extends Connection {
 	private $nohp='';
 	private $foto='';
 	private $idrole='';
+	private $role='';
 	
 	private $hasil= false;
 	private $message ='';
@@ -26,7 +27,7 @@ class User extends Connection {
 
 	public function AddUser(){
 		$sql = "INSERT INTO user(email, password, fname, lname, nohp, foto, idrole)
-				VALUES ('$this->email', '$this->password', '$this->fname', '$this->lname', '$this->nohp', '$this->foto', '$this->idrole')";				
+				VALUES ('$this->email', '$this->password', '$this->fname', '$this->lname', '$this->nohp', '$this->foto', 'role2')";				
 		$this->hasil = $this->connection->exec($sql);
 				
 		if($this->hasil)
@@ -48,7 +49,7 @@ class User extends Connection {
 		
 		
 	public function DeleteUser(){
-		$sql = "DELETE FROM user WHERE iduser=$this->iduser";
+		$sql = "DELETE FROM user WHERE userid=$this->userid";
 		$this->hasil = $this->connection->exec($sql);
 
 		if($this->hasil)
@@ -64,7 +65,7 @@ class User extends Connection {
 		if ($resultOne->rowCount() == 1){
 			while ($data = $resultOne->fetch(PDO::FETCH_OBJ)) {
 				$this->hasil = true;
-				$this->iduser = $data->iduser;
+				$this->userid = $data->userid;
 				$this->email = $data->email;
 				$this->password=$data->password;
 				$this->fname=$data->fname;
@@ -95,7 +96,7 @@ class User extends Connection {
 	}
 	
 	public function SelectAllUser(){
-		$sql = "SELECT * FROM user ORDER BY userid";
+		$sql = "SELECT u.*, r.role FROM user u, role r WHERE u.idrole=r.idrole ORDER BY userid";
 		$result = $this->connection->query($sql);
 		
 		$arrResult = Array();
@@ -112,6 +113,7 @@ class User extends Connection {
 				$objUser->nohp=$data->nohp;
 				$objUser->foto=$data->foto;
 				$objUser->idrole=$data->idrole;
+				$objUser->role=$data->role;
 				$arrResult[$i] = $objUser;
 				$i++;
 			}

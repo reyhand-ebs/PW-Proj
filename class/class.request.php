@@ -1,8 +1,8 @@
 <?php
 class Request extends Connection {
 	private $reqid ='';
-	private $iduser = '';
 	private $reqdate = '';
+	private $iduser = '';
 	private $idgenre = '';
 	private $reqjudul = '';
 	private $reqpenulis = '';
@@ -26,6 +26,17 @@ class Request extends Connection {
 			$this->$atribut = $value;
 		}
 	}		
+
+	public function AddRequest() {
+		$sql = "INSERT INTO request('reqid', 'reqdate', 'reqjudul', 'reqpenulis', 'reqpenerbit', 'reqhalaman', 'reqtahun', 'reqsummary', 'iduser', 'idgenre') 
+				VALUES ('$this->reqid', '$this->reqdate', '$this->reqjudul', '$this->reqpenulis', '$this->reqpenerbit', '$this->reqhalaman', '$this->reqtahun', '$this->summary','$this->iduser', '$this->namagenre->idgenre')";
+		$this->hasil = $this->connection->exec($sql);
+		
+		if($this->hasil)
+		   $this->message ='Data berhasil ditambahkan!';					
+		else
+		   $this->message ='Data gagal ditambahkan!';	
+	}
 		
 	public function UpdateSetujuRequest(){
 		$this->connect();
@@ -62,7 +73,7 @@ class Request extends Connection {
 				$objRequest->reqid=$data->reqid;
 				$objRequest->iduser=$data->iduser;
             	$objRequest->reqdate=$data->reqdate;
-            	$objRequest->idgenre=$data->idgenre;
+            	$objRequest->namagenre->idgenre=$data->idgenre;
 				$objRequest->reqjudul=$data->reqjudul;
             	$objRequest->reqpenulis=$data->reqpenulis;
             	$objRequest->reqpenerbit=$data->reqpenerbit;

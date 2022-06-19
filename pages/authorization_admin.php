@@ -4,7 +4,7 @@ if(!isset($_SESSION)){
 }
 
 if(!isset($_SESSION["idrole"])){
-	echo "<script> alert('Silakan Login untuk mengakses halaman ini'); </script>";
+	echo "<script> alert('Silakan login untuk mengakses halaman ini'); </script>";
 	echo '<script> window.location="index.php"; </script>';
 } else {
 	if($_SESSION["idrole"]!='role1') {

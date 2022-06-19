@@ -17,8 +17,9 @@
                 <tr class="text-center">
                     <th scope="col">No.</th>
                     <th scope="col">User ID</th>
+                    <th scope="col">Role</th>
+                    <th scope="col">Nama</th>
                     <th scope="col">Email</th>
-                    <th scope="col">Name</th>
                     <th scope="col">No Handphone</th>
                     <th scope="col">Action</th>
                 </tr>
@@ -39,6 +40,7 @@
                         echo '<tr>';
                         echo '<th scope="row" class="text-center">' . $no . '</th>';
                         echo '<td class="text-center">' . $dataUser->userid . '</td>';
+                        echo '<td class="text-center">' . $dataUser->role . '</td>';
                         echo '<td>' . $dataUser->fname . ' ' . $dataUser->lname . '</td>';
                         echo '<td>' . $dataUser->email . '</td>';
                         echo '<td>' . $dataUser->nohp . '</td>';
