@@ -1,4 +1,5 @@
 <?php
+//include('./inc.koneksi.php');
 class User extends Connection {
 	private $userid='';
 	private $email='';
@@ -77,7 +78,7 @@ class User extends Connection {
 	}
 	
 	public function SelectOneUser(){
-		$sql = "SELECT * FROM user WHERE userid = $this->userid";
+		$sql = "SELECT * FROM user WHERE userid = '$this->userid'";
 		$result = $this->connection->query($sql);
 		
 		if($result->rowCount() == 1){

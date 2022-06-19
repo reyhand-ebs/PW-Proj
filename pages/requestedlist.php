@@ -59,14 +59,13 @@ require_once('./class/class.request.php');
         <table class="table table-bordered me-ml-3 table-hover">
             <thead>
                 <tr class="text-center align-middle">
-                    <th scope="col">No</th>
-                    <th scope="col">Requested ID</th>
+                    <th scope="col">Req ID</th>
                     <th scope="col">User ID</th>
-                    <th scope="col">Date</th>
+                    <th scope="col">Tanggal</th>
                     <th scope="col">Genre</th>
                     <th scope="col">Judul</th>
-                    <th scope="col">Penulis Buku</th>
-                    <th scope="col">Penerbit Buku</th>
+                    <th scope="col">Penulis</th>
+                    <th scope="col">Penerbit</th>
                     <th scope="col">Halaman</th>
                     <th scope="col">Tahun</th>
                     <th scope="col">Summary</th>
@@ -83,10 +82,10 @@ require_once('./class/class.request.php');
                 if (count($arrayResult) == 0) {
                     echo '<tr><td colspan="6">Tidak ada data!</td></tr>';
                 } else {
-                    $no = 1;
+                    //$no = 1;
                     foreach ($arrayResult as $dataRequest) {
                         echo '<tr>';
-                        echo '<th scope="row" class="text-center align-middle">' . $no . '</th>';
+                        //echo '<th scope="row" class="text-center align-middle">' . $no . '</th>';
                         echo '<td class="text-center align-middle">' . $dataRequest->reqid . '</td>';
                         echo '<td class="text-center align-middle">' . $dataRequest->iduser . '</td>';
                         echo '<td class="text-center align-middle">' . $dataRequest->reqdate . '</td>';
@@ -103,7 +102,7 @@ require_once('./class/class.request.php');
 							onclick="return confirm(\'Apakah anda yakin ingin menolaknya?\')">Tolak</a>
 							</td>';
                         echo '</tr>';
-                        $no++;
+                        //$no++;
                     }
                 }
                 ?>

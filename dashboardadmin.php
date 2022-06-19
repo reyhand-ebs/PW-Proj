@@ -12,6 +12,13 @@ require_once('pages/authorization_admin.php');
 </head>
 
 <body>
+    <?php
+        include('inc.koneksi.php');
+        require_once('class/class.user.php');
+
+        $objUser = new User();
+        $arrayResult = $objUser->SelectAllUser();
+    ?>
     <nav class="navbar navbar-expand-lg bg-dark sticky-top py-0 px-2">
         <div class="container-fluid">
             <a href="dashboardadmin.php?p=home" class="navbar-brand"><img src="./img/logoheader.png" alt="" class="m-3 w-50"></a>
@@ -37,7 +44,7 @@ require_once('pages/authorization_admin.php');
             <div class="dropdown">
                 <a class="btn btn-secondary dropdown-toggle rounded-circle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"></a>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                    <li><a class="dropdown-item" href="dashboardadmin.php?p=profilesettings">Profile Settings</a></li>
+                    <li><a class="dropdown-item" href="dashboardadmin.php?p=profilesettings&userid=<?php echo $dataUser->userid; ?>">Profile Settings</a></li>
                     <li><a class="dropdown-item text-danger" href="dashboardadmin.php?p=logout">Log Out</a></li>
                 </ul>
             </div>

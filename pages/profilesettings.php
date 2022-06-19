@@ -4,7 +4,7 @@ require_once('./class/class.user.php');
 	
 $objUser = new User();
 if(isset($_POST['btnUpdate'])){
-		$objUser->iduser = $_POST['iduser'];	 
+		$objUser->userid = $_POST['userid'];	 
 		$objUser->foto = $_POST['foto'];	 
 		$isSuccessUpload = false;
 		
@@ -12,7 +12,7 @@ if(isset($_POST['btnUpdate'])){
 			$lokasifile = $_FILES['foto']['tmp_name'];
 			$nama_file =  $_FILES['foto']['name'];
 			$extension  = pathinfo( $_FILES["foto"]["name"], PATHINFO_EXTENSION ); 
-			$objUser->foto   = $objUser->iduser . '.' . $extension;
+			$objUser->foto   = $objUser->userid . '.' . $extension;
 			$folder = './img/';
 			$isSuccessUpload = move_uploaded_file($lokasifile, $folder.$objUser->foto);
 		}
@@ -20,7 +20,7 @@ if(isset($_POST['btnUpdate'])){
 			$isSuccessUpload = true;
 		
 		if($isSuccessUpload){	
-			$objUser->iduser=$_SESSION["iduser"];
+			$objUser->userid=$_SESSION["userid"];
             $objUser->email = $_POST['email'];			
 			$objUser->fname = $_POST['fname'];		
 			$objUser->lname = $_POST['lname'];	
@@ -33,8 +33,8 @@ if(isset($_POST['btnUpdate'])){
 			echo '<script> window.location = "'.$_SERVER['REQUEST_URI'].'";</script>';
 		}
 }
-else if(isset($_SESSION['iduser'])){	
-	$objUser->iduser = $_SESSION['iduser'];	
+else if(isset($_SESSION['userid'])){	
+	$objUser->iduser = $_SESSION['userid'];	
 	$objUser->SelectOneUser();
 }	
 ?>
@@ -68,7 +68,7 @@ else if(isset($_SESSION['iduser'])){
                 <tr>
                     <td>User ID</td>
                     <td>:</td>
-                    <td><input type="text" class="form-control" name="iduser" readonly value="<?php echo $objUser->iduser; ?>"></td>
+                    <td><input type="text" class="form-control" name="userid" readonly value="<?php echo $objUser->userid; ?>"></td>
                 </tr>	
                 <tr>
                     <td>First Name</td>

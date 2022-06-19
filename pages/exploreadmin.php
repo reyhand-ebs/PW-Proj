@@ -38,7 +38,7 @@
         <div class="container">
             <div class="row">
                 <?php
-                include('./inc.koneksi.php');
+                //include('./inc.koneksi.php');
                 require_once('./class/class.buku.php');
 
                 $objBuku = new Buku();

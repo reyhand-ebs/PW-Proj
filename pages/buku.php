@@ -1,5 +1,5 @@
 <?php 
-include('./inc.koneksi.php');
+//include('./inc.koneksi.php');
 require_once('./class/class.buku.php');
 require_once('./class/class.genre.php');
 $objBuku = new Buku();

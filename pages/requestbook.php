@@ -14,7 +14,7 @@ if(isset($_POST['btnSubmit'])){
     $objRequest->reqhalaman = $_POST['reqhalaman'];
     $objRequest->reqtahun = $_POST['reqtahun'];	
     $objRequest->reqsummary = $_POST['reqsummary'];
-    $objRequest->namagenre->idgenre = $_POST['idgenre'];		 
+    $objRequest->idgenre = $_POST['idgenre'];		 
 				
 	if(isset($_GET['reqid'])) {
 		$objRequest->reqid = $_GET['reqid'];
@@ -66,13 +66,13 @@ if(isset($_POST['btnSubmit'])){
             <td>:</td>
             <td>
             <select name="genre" class="form-control">
-                <option value=""><?php echo $objRequest->namagenre?>--Pilih Genre--</option>
+                <option value="">--Pilih Genre--</option>
                 <?php		
                     foreach ($genreList as $genre){
-                        if($objRequest->namagenre->idgenre == $genre->idgenre)
-                            echo '<option selected="true" value="'.$genre->idgenre.'">'.$genre->namagenre.'</option>';
+                        if($objRequest->idgenre == $genre->idgenre)
+                            echo '<option selected="true" value="'.$objRequest->idgenre.'">'.$genre->namagenre.'</option>';
                         else
-                            echo '<option value="'.$genre->idgenre.'">'.$genre->namagenre.'</option>';
+                            echo '<option value="'. $objRequest->idgenre .'">'.$genre->namagenre.'</option>';
                     } 
                 ?>	
                 </select>	

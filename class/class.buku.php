@@ -69,7 +69,6 @@
 					$this->judul = $data->judul;
 					$this->penulis = $data->penulis;
 					$this->penerbit = $data->penerbit;
-					$this->rating = $data->rating;
 					$this->halaman = $data->halaman;
 					$this->tahun = $data->tahun;
 					$this->summary = $data->summary;
@@ -93,7 +92,6 @@
 					$objBuku->judul = $data->judul;
 					$objBuku->penulis = $data->penulis;
 					$objBuku->penerbit = $data->penerbit;
-					$objBuku->rating = $data->rating;
 					$objBuku->halaman = $data->halaman;
 					$objBuku->tahun = $data->tahun;
 					$objBuku->summary = $data->summary;
