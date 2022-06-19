@@ -82,15 +82,14 @@ class User extends Connection {
 		if($result->rowCount() == 1){
 			while ($data = $result->fetch(PDO::FETCH_OBJ))
 			{
-				$objUser = new User();
-				$objUser->userid = $data->userid;
-				$objUser->email = $data->email;
-				$objUser->password = $data->password;
-				$objUser->fname = $data->fname;
-				$objUser->lname = $data->lname;
-				$objUser->nohp = $data->nohp;
-				$objUser->foto = $data->foto;
-				$objUser->idrole = $data->idrole;
+				$this->userid = $data->userid;
+				$this->email = $data->email;
+				$this->password = $data->password;
+				$this->fname = $data->fname;
+				$this->lname = $data->lname;
+				$this->nohp = $data->nohp;
+				$this->foto = $data->foto;
+				$this->idrole = $data->idrole;
 			}
 		}		
 	}

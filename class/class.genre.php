@@ -3,7 +3,7 @@
 
 	class Genre extends Connection {
 		private $idgenre = 0;
-		private $genre = '';
+		private $namagenre = '';
 
 		public function __get($atribute) {
 			if (property_exists($this, $atribute)) {
@@ -18,7 +18,7 @@
 		}
 
 		public function SelectAllGenre() {
-			$sql = "SELECT * FROM genre ORDER BY idgenre";
+			$sql = "SELECT * FROM genre ORDER BY namagenre ASC";
 			$result = $this->connection->query($sql);
 		
 			$arrResult = Array();

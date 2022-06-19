@@ -2,35 +2,32 @@
 include('./inc.koneksi.php');
 require_once('./class/class.buku.php');
 require_once('./class/class.genre.php');
-$objBuku = new Buku(); 
+$objBuku = new Buku();
 $objGenre = new Genre();
 $genreList = $objGenre->SelectAllGenre();
 
-if(isset($_POST['idbuku'])){	
-    $objBuku->idbuku = $_POST['idbuku'];	 
+if(isset($_POST['btnSubmit'])){
+    $objBuku->idbuku = $_POST['idbuku'];
 	$objBuku->judul = $_POST['judul'];	
     $objBuku->penulis = $_POST['penulis'];
 	$objBuku->penerbit = $_POST['penerbit'];	
-    $objBuku->halaman = $_POST['halaman'];	
+    $objBuku->halaman = $_POST['halaman'];
     $objBuku->tahun = $_POST['tahun'];	
     $objBuku->summary = $_POST['summary'];
     $objBuku->idgenre = $_POST['idgenre'];		 
 				
-	if(isset($_GET['idbuku'])){		
+	if(isset($_GET['idbuku'])) {
 		$objBuku->idbuku = $_GET['idbuku'];
 		$objBuku->UpdateBuku();
+	} else {	
+		$objBuku->AddBuku();
 	}
-	else{	
-		$objBuku->AddBuku();	
-	}	
-	
 	echo "<script> alert('$objBuku->message'); </script>";
-	if($objBuku->hasil){
-		echo '<script> window.location = "dashboardadmin.php?p=exploreadmin";</script>';
-	}				
-}
-else if(isset($_GET['idbuku'])){	
-	$objBuku->idbuku = $_GET['idbuku'];	
+	if($objBuku->hasil) {
+	    echo '<script> window.location = "dashboardadmin.php?p=exploreadmin";</script>';
+	}			
+} else if(isset($_GET['idbuku'])) {
+	$objBuku->idbuku = $_GET['idbuku'];
 	$objBuku->SelectOneBuku();
 }
 ?>
@@ -50,6 +47,11 @@ else if(isset($_GET['idbuku'])){
     <form action="" method="post">
 	<table class="table" border="0">
         <tr>
+            <td>Id Buku</td>
+            <td>:</td>
+            <td><input type="text" class="form-control" name="judul" readonly value="<?php echo $objBuku->idbuku; ?>"></td>
+        </tr>	
+        <tr>
             <td>Judul</td>
             <td>:</td>
             <td><input type="text" class="form-control" name="judul" value="<?php echo $objBuku->judul; ?>"></td>
@@ -64,10 +66,10 @@ else if(isset($_GET['idbuku'])){
             <td>:</td>
             <td>
             <select name="genre" class="form-control">
-                <option value="">--Please select genre--</option>
+                <option value=""><?php echo $objBuku->namagenre?></option>
                 <?php		
-                    foreach ($genreList as $genre){ 								
-                        if($objBuku->idgenre == $genre->idgenre)				
+                    foreach ($genreList as $genre){
+                        if($objBuku->idgenre == $genre->idgenre)
                             echo '<option selected="true" value='.$genre->idgenre.'>'.$genre->namagenre.'</option>';
                         else
                             echo '<option value='.$genre->idgenre.'>'.$genre->namagenre.'</option>';
