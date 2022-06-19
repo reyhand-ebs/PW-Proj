@@ -82,9 +82,8 @@
 					$objBuku->halaman = $data->halaman;
 					$objBuku->tahun = $data->tahun;
 					$objBuku->summary = $data->summary;
-					$objBuku->idgenre = $data->idgenre;
+					$objBuku->namagenre = $data->namagenre;
 					$objBuku->cover = $data->cover;
-					$arrResult = $objBuku;
 				}
 			}
 		}
@@ -118,7 +117,7 @@
 		}
 
 		public function SelectAllBukuByGenre($selectgenre){
-			$sql = "SELECT * FROM buku WHERE idgenre =(SELECT idgenre FROM genre WHERE namagenre=$selectgenre)";				
+			$sql = "SELECT * FROM buku WHERE idgenre =(SELECT idgenre FROM genre WHERE genre=$selectgenre)";				
 			$result = $this->connection->query($sql);
 				
 			$arrResult = Array();

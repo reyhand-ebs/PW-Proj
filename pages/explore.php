@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+
 <head>
     <title>Tubirit | Explore</title>
 
@@ -17,17 +19,17 @@
                 </button>
                 <ul class="dropdown-menu" role="menu">
                     <li><a class="dropdown-item" href="#">A-Z</a></li>
-                        <?php
-                            include('./inc.koneksi.php');
-                            require_once('./class/class.genre.php');
-            
-                            $objGenre = new Genre();
-                            $arrayResult = $objGenre->SelectAllGenre();
+                    <?php
+                    include('./inc.koneksi.php');
+                    require_once('./class/class.genre.php');
 
-                            foreach ($arrayResult as $dataGenre) {
-                                echo '<li><a class="dropdown-item" href="#">' . $dataGenre->idgenre . ' - '.$dataGenre->namagenre . '</a></li>';
-                            }
-                        ?>
+                    $objGenre = new Genre();
+                    $arrayResult = $objGenre->SelectAllGenre();
+
+                    foreach ($arrayResult as $dataGenre) {
+                        echo '<li><a class="dropdown-item" href="#">' . $dataGenre->idgenre . ' - ' . $dataGenre->namagenre . '</a></li>';
+                    }
+                    ?>
                 </ul>
             </div>
         </div>
@@ -48,30 +50,30 @@
                     $no = 1;
                     foreach ($arrayResult as $dataBuku) {
                 ?>
-                <div class="col card mb-3 mx-2">
-                    <div class="row g-0">
-                        <div class="col-md-6 py-2">
-                            <img src="./img/books/<?php echo $dataBuku->cover;?>" class="img-fluid rounded-start" alt="<?php echo $dataBuku->judul;?>">
-                        </div>
-                        <div class="col-md-6">
-                            <div class="card-body">
-                                <h5 class="card-title"><?php echo $dataBuku->judul; ?></h5>
-                                <h6 class="card-title"><?php echo $dataBuku->penulis; ?></h6>
-                                <br>
-                                <p><?php echo $dataBuku->genre;?></br><?php echo $dataBuku->penerbit;?></br><?php echo $dataBuku->halaman?> pages</br><?php echo $dataBuku->tahun;?></p>
+                        <div class="col card mb-3 mx-2">
+                            <div class="row g-0">
+                                <div class="col-sm-6 py-2">
+                                    <img class="img-fluid rounded" alt="<?php echo $dataBuku->judul; ?>" src="./img/books/<?php echo $dataBuku->cover; ?>">
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="card-body">
+                                        <h5 class="card-title"><?php echo $dataBuku->judul; ?></h5>
+                                        <h6 class="card-title"><?php echo $dataBuku->penulis; ?></h6>
+                                        <br>
+                                        <p><?php echo $dataBuku->namagenre; ?><br><?php echo $dataBuku->penerbit; ?><br><?php echo $dataBuku->halaman; ?> halaman<br><?php echo $dataBuku->tahun; ?></p>
+                                    </div>
+                                </div>
+                                <p class="card-text"><?php echo $dataBuku->summary; ?></p>
+                                <div class="card-body">
+                                    <div class="float-right btn-group btn-group-sm">
+                                        <a href="dashboardadmin.php?p=buku&idbuku=<?php echo $dataBuku->idbuku; ?>" name="btnSubmit" class="btn btn-primary tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Edit"><i class="bx bx-pencil"></i></a>
+                                        <a href="dashboardadmin.php?p=deletebuku&idbuku=<?php echo $dataBuku->idbuku; ?>" class="btn btn-secondary tooltips" onclick="return confirm(\'Apakah anda yakin ingin menghapus?')" data-placement="top" data-toggle="tooltip" data-original-title="Delete"><i class="bx bx-trash"></i></a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <p class="card-text"><?php echo $dataBuku->summary;?></p>
-                        <div class="card-body">
-                            <div class="float-right btn-group btn-group-sm">
-                                <a href='#' class='btn btn-primary tooltips' data-placement='top' data-toggle='tooltip' data-original-title='dit'><i class='bx bx-pencil'></i></a>
-                                <a href='#' class='btn btn-secondary tooltips' data-placement='top' data-toggle='tooltip' data-original-title='Delete'><i class='bx bx-trash'></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 <?php
-                    $no++;
+                        $no++;
                     }
                 }
                 ?>

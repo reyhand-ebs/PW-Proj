@@ -54,7 +54,7 @@ require_once('./class/class.request.php');
 </head>
 
 <body>
-    <div class="container-fluid py-5 pb-5">
+    <div class="container py-5 pb-5">
         <h2 class="pb-5"><strong>Requested List</strong></h2>
         <table class="table table-bordered me-ml-3 table-hover">
             <thead>
@@ -110,5 +110,4 @@ require_once('./class/class.request.php');
             </tbody>
         </table>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 </body>

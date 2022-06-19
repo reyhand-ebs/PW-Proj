@@ -1,6 +1,6 @@
 <?php
 class User extends Connection {
-	private $iduser='';
+	private $userid='';
 	private $email='';
 	private $password='';
 	private $fname='';
