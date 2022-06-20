@@ -82,4 +82,6 @@
     </div>
 </body>
 
+<a class="btn btn-info" href="dashboardadmin.php?p=report_buku">Download</a> 
+
 </html>
