@@ -3,8 +3,10 @@ require_once('./class/class.user.php');
 
 $objUser = new User();
 if (isset($_POST['setting'])) {
-    $objUser->userid = $_POST['userid'];
-    $objUser->idrole = $_POST['idrole'];
+    $objUser->fname = $_POST['fname'];
+    $objUser->lname = $_POST['lname'];
+    $objUser->password = $_POST['password'];
+    $objUser->nohp = $_POST['nohp'];
     $isSuccessUpload = false;
 
     if (file_exists($_FILES['foto']['tmp_name']) || is_uploaded_file($_FILES['foto']['tmp_name'])) {
@@ -19,12 +21,6 @@ if (isset($_POST['setting'])) {
 
     if ($isSuccessUpload) {
         $objUser->userid = $_SESSION["userid"];
-        $objUser->email = $_POST["email"];
-        $objUser->fname = $_POST['fname'];
-        $objUser->lname = $_POST['lname'];
-        $objUser->password = $_POST['password'];
-        $objUser->nohp = $_POST['nohp'];
-
         $objUser->UpdateUser();
 
         echo "<script> alert('$objUser->message'); </script>";
@@ -67,22 +63,22 @@ if (isset($_POST['setting'])) {
                         <tr>
                             <td>User ID</td>
                             <td>:</td>
-                            <td><input type="text" class="form-control" name="userid" readonly value="<?php echo $objUser->userid = $_SESSION['email']; ?>"></td>
+                            <td><input type="text" class="form-control" name="userid" readonly value="<?php echo $objUser->userid = $_SESSION['userid']; ?>"></td>
                         </tr>
                         <tr>
                             <td>First Name</td>
                             <td>:</td>
-                            <td><input type="text" class="form-control" name="fname" value="<?php echo $objUser->fname; ?>"></td>
+                            <td><input type="text" class="form-control" name="fname" value="<?php echo $objUser->userid = $_SESSION['fname']; ?>"></td>
                         </tr>
                         <tr>
                             <td>Last Name</td>
                             <td>:</td>
-                            <td><input type="text" class="form-control" name="lname" value="<?php echo $objUser->lname; ?>"></td>
+                            <td><input type="text" class="form-control" name="lname" value="<?php echo $objUser->userid = $_SESSION['lname']; ?>"></td>
                         </tr>
                         <tr>
                             <td>Email</td>
                             <td>:</td>
-                            <td><input type="email" class="form-control" name="email" value="<?php echo $objUser->email; ?>"></td>
+                            <td><input type="email" class="form-control" name="email" readonly value="<?php echo $objUser->userid = $_SESSION['email']; ?>"></td>
                         </tr>
                     </table>
                 </div>
@@ -108,7 +104,7 @@ if (isset($_POST['setting'])) {
                 </div>
             </div>
             </br>
-            <input type="submit" class="btn btn-success" value="Update Profile" name="btnUpdate"><br><br>
+            <input type="submit" class="btn btn-success" value="Update Profile" name="setting"><br><br>
         </form>
     </div>
 </body>

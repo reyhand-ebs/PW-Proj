@@ -38,8 +38,16 @@
 		}
 
 		public function UpdateBuku(){
-			$sql = "UPDATE buku SET judul = '$this->judul', penulis = '$this->penulis', penerbit = '$this->penerbit', rating = '$this->rating', halaman = '$this->halaman', tahun = '$this->tahun', summary = '$this->summary', idgenre = '$this->idgenre', cover = '$this->cover'
-			WHERE idbuku = '$this->idbuku' AND idgenre IN(SELECT idgenre FROM genre WHERE namagenre = '$this->namagenre')";
+			$sql = "UPDATE buku SET 
+					judul = '$this->judul', 
+					penulis = '$this->penulis', 
+					penerbit = '$this->penerbit', 
+					halaman = '$this->halaman', 
+					tahun = '$this->tahun', 
+					summary = '$this->summary', 
+					cover = '$this->cover'
+					genrebuku = ". $this->namagenre->idgenre."
+					WHERE idbuku = $this->idbuku";
 			$this->hasil = $this->connection->exec($sql);
 			
 			if($this->hasil)
@@ -59,7 +67,7 @@
 		}
 
 		public function SelectOneBuku(){
-			$sql = "SELECT b.*, g.namagenre FROM buku b, genre g WHERE b.idgenre = g.idgenre AND idbuku = '$this->idbuku'";
+			$sql = "SELECT b.*, g.namagenre FROM buku b, genre g WHERE b.genrebuku = g.idgenre AND idbuku = '$this->idbuku'";
 			$result = $this->connection->query($sql);
 
 			$arrResult = Array();
@@ -80,7 +88,7 @@
 		}
 
 		public function SelectAllBuku(){
-			$sql = "SELECT b.*, g.namagenre FROM buku b, genre g WHERE b.idgenre = g.idgenre ORDER BY judul";
+			$sql = "SELECT b.*, g.namagenre FROM buku b, genre g WHERE b.genrebuku = g.idgenre ORDER BY judul";
 			$result = $this->connection->query($sql);
 		
 			$arrResult = Array();
@@ -97,7 +105,7 @@
 					$objBuku->tahun = $data->tahun;
 					$objBuku->summary = $data->summary;
 					$objBuku->cover = $data->cover;
-					$objBuku->idgenre = $data->idgenre;
+					$objBuku->genrebuku = $data->genrebuku;
 					$objBuku->namagenre = $data->namagenre;
 					$arrResult[$i] = $objBuku;
 					$i++;

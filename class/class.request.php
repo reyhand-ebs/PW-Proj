@@ -2,7 +2,7 @@
 class Request extends Connection {
 	private $reqid ='';
 	private $reqdate = '';
-	private $iduser = '';
+	private $reqemail = '';
 	private $idgenre = '';
 	private $reqjudul = '';
 	private $reqpenulis = '';
@@ -27,22 +27,23 @@ class Request extends Connection {
 		}
 	}		
 
-	public function AddRequest() {
-		$sql = "INSERT INTO request('reqid', 'reqdate', 'reqjudul', 'reqpenulis', 'reqpenerbit', 'reqhalaman', 'reqtahun', 'reqsummary', 'iduser', 'idgenre') 
-				VALUES ('$this->reqid', '$this->reqdate', '$this->reqjudul', '$this->reqpenulis', '$this->reqpenerbit', '$this->reqhalaman', '$this->reqtahun', '$this->summary','$this->iduser', ".$this->idgenre."')";
+	public function AddRequest(){
+		$sql = "INSERT INTO request (reqid, reqdate, reqjudul, reqpenulis, reqpenerbit, reqhalaman, reqtahun, status, reqsummary, reqemail, idgenre) 
+				VALUES ($this->reqid, '$this->reqdate', '$this->reqjudul', '$this->reqpenulis', '$this->reqpenerbit', '$this->reqhalaman', '$this->reqtahun', 'Waiting', '$this->summary', '$this->reqemail', 'G001')";
+		
 		$this->hasil = $this->connection->exec($sql);
 		
 		if($this->hasil)
-		   $this->message ='Data berhasil ditambahkan!';					
+		   $this->message ='Buku berhasil diajukan!';					
 		else
-		   $this->message ='Data gagal ditambahkan!';	
+		   $this->message ='Buku gagal diajukan!';	
 	}
 		
 	public function UpdateSetujuRequest(){
 		$this->connect();
 		$sql = "UPDATE request
 				SET status ='Approved'
-				WHERE reqid = '$this->reqid'";
+				WHERE reqid = $this->reqid";
 		$this->hasil = $this->connection->exec($sql);
 		if($this->hasil)
 			$this->message ='Data berhasil diubah!';
@@ -71,7 +72,7 @@ class Request extends Connection {
 			while ($data= $result->fetch(PDO::FETCH_OBJ)) {
 				$objRequest = new Request();
 				$objRequest->reqid=$data->reqid;
-				$objRequest->iduser=$data->iduser;
+				$objRequest->reqemail=$data->reqemail;
             	$objRequest->reqdate=$data->reqdate;
             	$objRequest->idgenre=$data->namagenre;
 				$objRequest->reqjudul=$data->reqjudul;
@@ -80,6 +81,7 @@ class Request extends Connection {
 	            $objRequest->reqhalaman=$data->reqhalaman;
             	$objRequest->reqtahun=$data->reqtahun;
             	$objRequest->reqsummary=$data->reqsummary;
+				$objRequest->status=$data->status;
 				$arrResult[$i] = $objRequest;
 				$i++;
 			}

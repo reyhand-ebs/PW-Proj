@@ -2,8 +2,10 @@
 include('./inc.koneksi.php');
 require_once('./class/class.genre.php');
 require_once('./class/class.request.php');
+require_once('./class/class.user.php');
 $objRequest = new Request();
 $objGenre = new Genre();
+$objUser = new User();
 $genreList = $objGenre->SelectAllGenre();
 
 if(isset($_POST['btnSubmit'])){
@@ -14,7 +16,8 @@ if(isset($_POST['btnSubmit'])){
     $objRequest->reqhalaman = $_POST['reqhalaman'];
     $objRequest->reqtahun = $_POST['reqtahun'];	
     $objRequest->reqsummary = $_POST['reqsummary'];
-    $objRequest->idgenre = $_POST['idgenre'];		 
+    $objRequest->reqemail = $_POST['reqemail'];
+    //$objRequest->namagenre->idgenre = $_POST['idgenre'];		 
 				
 	if(isset($_GET['reqid'])) {
 		$objRequest->reqid = $_GET['reqid'];
@@ -24,7 +27,7 @@ if(isset($_POST['btnSubmit'])){
 	}
 	echo "<script> alert('$objRequest->message'); </script>";
 	if($objRequest->hasil) {
-	    echo '<script> window.location = "dashboardadmin.php?p=explore";</script>';
+	    echo '<script> window.location = "dashboardmember.php?p=explore";</script>';
 	}			
 } else if(isset($_GET['reqid'])) {
 	$objRequest->reqid = $_GET['reqid'];
@@ -47,6 +50,11 @@ if(isset($_POST['btnSubmit'])){
     <form action="" method="post">
 	<table class="table" border="0">
         <tr>
+            <td>Email</td>
+            <td>:</td>
+            <td><input type="email" class="form-control" name="reqemail" value="<?php echo $objRequest->reqemail; ?>"></td>
+        </tr>	
+        <tr>
             <td>Tanggal</td>
             <td>:</td>
             <td><input type="date" class="form-control" name="date" value="<?php echo date("Y/m/d"); ?>"></td>
@@ -54,7 +62,7 @@ if(isset($_POST['btnSubmit'])){
         <tr>
             <td>Request ID</td>
             <td>:</td>
-            <td><input type="text" class="form-control" name="reqid" readonly value="<?php echo $objRequest->reqid; ?>"></td>
+            <td><input type="text" class="form-control" name="reqid" value="<?php echo $objRequest->reqid; ?>"></td>
         </tr>	
         <tr>
             <td>Judul</td>

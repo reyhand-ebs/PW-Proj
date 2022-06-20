@@ -38,6 +38,7 @@
                 <a class="btn btn-secondary dropdown-toggle rounded-circle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"></a>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                     <li><a class="dropdown-item" href="dashboardmember.php?p=profilesettings">Profile Settings</a></li>
+                    <li><a class="dropdown-item" href="dashboardmember.php?p=history">History</a></li>
                     <li><a class="dropdown-item text-danger" href="dashboardmember.php?p=logout">Log Out</a></li>
                 </ul>
             </div>

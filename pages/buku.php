@@ -14,7 +14,7 @@ if(isset($_POST['btnSubmit'])){
     $objBuku->halaman = $_POST['halaman'];
     $objBuku->tahun = $_POST['tahun'];	
     $objBuku->summary = $_POST['summary'];
-    $objBuku->idgenre = $_POST['idgenre'];	 
+    $objBuku->namagenre->idgenre = $_POST['genrebuku'];	 
 				
 	if(isset($_GET['idbuku'])) {
 		$objBuku->idbuku = $_GET['idbuku'];
@@ -22,6 +22,7 @@ if(isset($_POST['btnSubmit'])){
 	} else {	
 		$objBuku->AddBuku();
 	}
+
 	echo "<script> alert('$objBuku->message'); </script>";
 	if($objBuku->hasil) {
 	    echo '<script> window.location = "dashboardadmin.php?p=exploreadmin";</script>';
@@ -43,7 +44,7 @@ if(isset($_POST['btnSubmit'])){
 <body>
 <div class="container">  
 <div class="col-md-6">			
-  <h4 class="title py-4"><span class="text"><strong>Edit Profil Buku</strong></span></h4>
+  <h4 class="title py-4"><span class="text"><strong>Profil Buku</strong></span></h4>
     <form action="" method="post">
 	<table class="table" border="0">
         <tr>
@@ -60,14 +61,14 @@ if(isset($_POST['btnSubmit'])){
             <td>Genre</td>
             <td>:</td>
             <td>
-            <select name="genre" class="form-control">
-                <option value="<?php echo $objBuku->namagenre?>"><?php echo $objBuku->namagenre?></option>
+            <select name="genrebuku" class="form-control">
+                <option value="">---Please select genre---</option>
                 <?php		
                     foreach ($genreList as $genre){
-                        if($objBuku->idgenre == $genre->idgenre)
-                            echo '<option selected="true" value='.$objBuku->namagenre.'>'.$genre->namagenre.'</option>';
+                        if($objBuku->namagenre->idgenre == $genre->idgenre)
+                            echo '<option selected="true" value="'.$genre->idgenre.'">'.$genre->namagenre.'</option>';
                         else
-                            echo '<option value='.$objBuku->namagenre.'>'.$genre->namagenre.'</option>';
+                            echo '<option value="'.$genre->idgenre.'">'.$genre->namagenre.'</option>';
                     } 
                 ?>	
                 </select>	
@@ -96,7 +97,7 @@ if(isset($_POST['btnSubmit'])){
         <tr>
             <td>Summary</td>
             <td>:</td>
-            <td><textarea class="form-control" name="tahun"><?php echo $objBuku->summary; ?></textarea></td>
+            <td><textarea class="form-control" name="summary"><?php echo $objBuku->summary; ?></textarea></td>
         </tr>	
 
         <tr>

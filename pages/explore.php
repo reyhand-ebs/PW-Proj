@@ -36,10 +36,31 @@
             </div>
         </div>
 
+        <form action="explore.php" method="get">
+            <label>Search :</label>
+            <input type="text" name="cari">
+            <input type="submit" value="Search">
+        </form>
+
+        <?php 
+            if(isset($_GET['cari'])){
+            $cari = $_GET['cari'];
+            echo "<b>Hasil pencarian : ".$cari."</b>";
+            }
+        ?>
+
         <!--RECOMMENDATION LIST-->
         <div class="container-fluid mx-5 ms-5">
             <div class="row">
                 <?php
+ 
+                if(isset($_GET['cari'])){
+                 $cari = $_GET['cari'];
+                 $sql = ("select * from buku where judul like '%".$cari."%'");    
+                }else{
+                 $sql = ("select * from buku");  
+                }
+
                 require_once('./class/class.buku.php');
 
                 $objBuku = new Buku();

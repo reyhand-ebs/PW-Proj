@@ -59,7 +59,7 @@ require_once('./class/class.request.php');
             <thead>
                 <tr class="text-center align-middle">
                     <th scope="col">Req ID</th>
-                    <th scope="col">User ID</th>
+                    <th scope="col">Email</th>
                     <th scope="col">Tanggal</th>
                     <th scope="col">Genre</th>
                     <th scope="col">Judul</th>
@@ -86,7 +86,7 @@ require_once('./class/class.request.php');
                         echo '<tr>';
                         //echo '<th scope="row" class="text-center align-middle">' . $no . '</th>';
                         echo '<td class="text-center align-middle">' . $dataRequest->reqid . '</td>';
-                        echo '<td class="text-center align-middle">' . $dataRequest->iduser . '</td>';
+                        echo '<td class="text-center align-middle">' . $dataRequest->reqemail . '</td>';
                         echo '<td class="text-center align-middle">' . $dataRequest->reqdate . '</td>';
                         echo '<td class="text-center align-middle">' . $dataRequest->idgenre . '</td>';
                         echo '<td class="text-center align-middle">' . $dataRequest->reqjudul . '</td>';

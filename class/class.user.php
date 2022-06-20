@@ -38,8 +38,8 @@ class User extends Connection {
 	}
 	
 	public function UpdateUser(){
-		$sql = "UPDATE user SET email = '$this->email', password='$this->password', fname='$this->fname', lname='$this->lname', nohp='$this->nohp', foto='$this->foto', 
-		WHERE iduser = $this->iduser";
+		$sql = "UPDATE user SET email = '$this->email', password='$this->password', fname='$this->fname', lname='$this->lname', nohp='$this->nohp', foto='$this->foto'
+		WHERE iduser = '$this->iduser'";
 		$this->hasil = $this->connection->exec($sql);
 			
 		if($this->hasil)
