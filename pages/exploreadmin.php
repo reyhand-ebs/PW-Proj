@@ -79,9 +79,9 @@
                 ?>
             </div>
         </div>
+        <div class="btn-group p-5 float-end">
+            <a class="btn btn-success" href="dashboardadmin.php?p=report_buku">Download</a> 
+        </div>
     </div>
 </body>
-
-<a class="btn btn-info" href="dashboardadmin.php?p=report_buku">Download</a> 
-
 </html>
