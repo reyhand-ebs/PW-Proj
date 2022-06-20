@@ -1,5 +1,4 @@
 <?php 
-include('./inc.koneksi.php');
 require_once('./class/class.genre.php');
 require_once('./class/class.request.php');
 require_once('./class/class.user.php');
@@ -22,7 +21,7 @@ if(isset($_POST['btnSubmit'])){
 				
 	if(isset($_GET['reqid'])) {
 		$objRequest->reqid = $_GET['reqid'];
-		$objRequest->UpdateRequest();
+		$objRequest->UpdateSetujuRequest();
 	} else {	
 		$objRequest->AddRequest();
 	}
@@ -58,18 +57,18 @@ if(isset($_POST['btnSubmit'])){
         <tr>
             <td>Tanggal</td>
             <td>:</td>
-            <td><input type="date" class="form-control" name="date" value="<?php echo $objRequest->reqdate; ?>"></td>
+            <td><input type="label" class="form-control" name="date" readonly value="<?php echo $objRequest->reqdate = date('Y-m-d'); ?>"></td>
         </tr>
         <tr>
             <td>Request ID</td>
             <td>:</td>
-            <td><input type="text" class="form-control" name="reqid" value="<?php echo $objRequest->reqid; ?>"></td>
+            <td><input type="text" class="form-control" name="reqid" readonly value="<?php echo $objRequest->reqid; ?>"></td>
         </tr>	
         <tr>
             <td>Judul</td>
             <td>:</td>
             <td><input type="text" class="form-control" name="reqjudul" value="<?php echo $objRequest->reqjudul; ?>"></td>
-        </tr>		
+        </tr>
         <tr>
             <td>Genre</td>
             <td>:</td>

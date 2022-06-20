@@ -18,7 +18,7 @@
 		}
 
 		public function SelectAllGenre() {
-			$sql = "SELECT namagenre FROM genre ORDER BY namagenre ASC";
+			$sql = "SELECT * FROM genre ORDER BY namagenre ASC";
 			$result = $this->connection->query($sql);
 		
 			$arrResult = Array();
@@ -27,7 +27,7 @@
 				while($data= $result->fetch(PDO::FETCH_OBJ))
 				{
 					$objGenre = new Genre();
-					//$objGenre->idgenre = $data->idgenre;
+					$objGenre->idgenre = $data->idgenre;
 					$objGenre->namagenre = $data->namagenre;
 					$arrResult[$i] = $objGenre;
 					$i++;

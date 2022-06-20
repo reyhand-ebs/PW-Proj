@@ -20,7 +20,6 @@
                 <ul class="dropdown-menu" role="menu">
                     <li><a class="dropdown-item" href="#">A-Z</a></li>
                     <?php
-                    include('./inc.koneksi.php');
                     require_once('./class/class.genre.php');
 
                     $objGenre = new Genre();

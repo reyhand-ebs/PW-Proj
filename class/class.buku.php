@@ -12,6 +12,7 @@
 		private $idgenre='';
 		private $cover='';
 		private $namagenre ='';
+		private $gen;
 		private $message='';
 
 		public function __get($atribute) {
@@ -26,9 +27,14 @@
 			}
 		}
 
+		function __construct() {
+			parent::__construct();
+			$this->genre = new Genre();
+		}
+
 		public function AddBuku() {
-			$sql = "INSERT INTO buku(idbuku, judul, halaman, tahun, penulis, penerbit, summary, rating, idgenre) 
-		            VALUES ('', '$this->judul', '$this->halaman', '$this->tahun', '$this->penulis', '$this->penerbit', '$this->summary', '$this->rating', '$this->idgenre')";
+			$sql = "INSERT INTO buku(idbuku, judul, halaman, tahun, penulis, penerbit, summary, idgenre) 
+		            VALUES ('$this->idbuku', '$this->judul', '$this->halaman', '$this->tahun', '$this->penulis', '$this->penerbit', '$this->summary', ".$this->genre->idgenre.")";
 			$this->hasil = $this->connection->exec($sql);
 			
 			if($this->hasil)
@@ -46,7 +52,7 @@
 					tahun = '$this->tahun', 
 					summary = '$this->summary', 
 					cover = '$this->cover'
-					genrebuku = ". $this->namagenre->idgenre."
+					idgenre = ". $this->idgenre."
 					WHERE idbuku = $this->idbuku";
 			$this->hasil = $this->connection->exec($sql);
 			

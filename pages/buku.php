@@ -1,5 +1,4 @@
 <?php 
-//include('./inc.koneksi.php');
 require_once('./class/class.buku.php');
 require_once('./class/class.genre.php');
 $objBuku = new Buku();
@@ -14,7 +13,7 @@ if(isset($_POST['btnSubmit'])){
     $objBuku->halaman = $_POST['halaman'];
     $objBuku->tahun = $_POST['tahun'];	
     $objBuku->summary = $_POST['summary'];
-    $objBuku->namagenre->idgenre = $_POST['genrebuku'];	 
+    $objBuku->gen->idgenre = $_POST['genrebuku'];
 				
 	if(isset($_GET['idbuku'])) {
 		$objBuku->idbuku = $_GET['idbuku'];
@@ -50,7 +49,7 @@ if(isset($_POST['btnSubmit'])){
         <tr>
             <td>Id Buku</td>
             <td>:</td>
-            <td><input type="text" class="form-control" name="judul" readonly value="<?php echo $objBuku->idbuku; ?>"></td>
+            <td><input type="text" class="form-control" name="idbuku" readonly value="<?php echo $objBuku->idbuku = ''; ?>"></td>
         </tr>	
         <tr>
             <td>Judul</td>
@@ -64,12 +63,12 @@ if(isset($_POST['btnSubmit'])){
             <select name="genrebuku" class="form-control">
                 <option value="">---Please select genre---</option>
                 <?php		
-                    foreach ($genreList as $genre){
-                        if($objBuku->namagenre->idgenre == $genre->idgenre)
-                            echo '<option selected="true" value="'.$genre->idgenre.'">'.$genre->namagenre.'</option>';
+                    foreach ($genreList as $gen){
+                        if($objBuku->gen->idgenre == $gen->idgenre)
+                            echo '<option selected="true" value='.$gen->idgenre.'>'. $gen->namagenre.'</option>';
                         else
-                            echo '<option value="'.$genre->idgenre.'">'.$genre->namagenre.'</option>';
-                    } 
+                            echo '<option value='.$gen->idgenre.'>'.$gen->namagenre.'</option>';
+                    }
                 ?>	
                 </select>	
             </td>
