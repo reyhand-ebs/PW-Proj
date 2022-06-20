@@ -10,6 +10,7 @@ $genreList = $objGenre->SelectAllGenre();
 
 if(isset($_POST['btnSubmit'])){
     $objRequest->reqid = $_POST['reqid'];
+    $objRequest->reqdate = $_POST['reqdate'];
 	$objRequest->reqjudul = $_POST['reqjudul'];	
     $objRequest->reqpenulis = $_POST['reqpenulis'];
 	$objRequest->reqpenerbit = $_POST['reqpenerbit'];	
@@ -17,7 +18,7 @@ if(isset($_POST['btnSubmit'])){
     $objRequest->reqtahun = $_POST['reqtahun'];	
     $objRequest->reqsummary = $_POST['reqsummary'];
     $objRequest->reqemail = $_POST['reqemail'];
-    //$objRequest->namagenre->idgenre = $_POST['idgenre'];		 
+    $objRequest->idgenre = $_POST['idgenre'];		 
 				
 	if(isset($_GET['reqid'])) {
 		$objRequest->reqid = $_GET['reqid'];
@@ -57,7 +58,7 @@ if(isset($_POST['btnSubmit'])){
         <tr>
             <td>Tanggal</td>
             <td>:</td>
-            <td><input type="date" class="form-control" name="date" value="<?php echo date("Y/m/d"); ?>"></td>
+            <td><input type="date" class="form-control" name="date" value="<?php echo $objRequest->reqdate; ?>"></td>
         </tr>
         <tr>
             <td>Request ID</td>

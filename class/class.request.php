@@ -29,7 +29,7 @@ class Request extends Connection {
 
 	public function AddRequest(){
 		$sql = "INSERT INTO request (reqid, reqdate, reqjudul, reqpenulis, reqpenerbit, reqhalaman, reqtahun, status, reqsummary, reqemail, idgenre) 
-				VALUES ($this->reqid, '$this->reqdate', '$this->reqjudul', '$this->reqpenulis', '$this->reqpenerbit', '$this->reqhalaman', '$this->reqtahun', 'Waiting', '$this->summary', '$this->reqemail', 'G001')";
+				VALUES ($this->reqid, '$this->reqdate', '$this->reqjudul', '$this->reqpenulis', '$this->reqpenerbit', '$this->reqhalaman', '$this->reqtahun', 'Waiting', '$this->summary', '$this->reqemail', '$this->idgenre')";
 		
 		$this->hasil = $this->connection->exec($sql);
 		
