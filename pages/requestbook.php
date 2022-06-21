@@ -1,24 +1,24 @@
 <?php 
-include('./inc.koneksi.php');
 require_once('./class/class.genre.php');
 require_once('./class/class.request.php');
 require_once('./class/class.user.php');
 $objRequest = new Request();
 $objGenre = new Genre();
 $objUser = new User();
-$genreList = $objGenre->SelectAllGenre();
+$objUser->SelectOneUser();
+$objGenre->SelectAllGenre();
 
 if(isset($_POST['btnSubmit'])){
-    $objRequest->reqid = $_POST['reqid'];
-    $objRequest->reqdate = $_POST['reqdate'];
+    $requestdate = $_POST['reqdate'];
+    $objRequest->reqdate = $requestdate;
 	$objRequest->reqjudul = $_POST['reqjudul'];	
     $objRequest->reqpenulis = $_POST['reqpenulis'];
 	$objRequest->reqpenerbit = $_POST['reqpenerbit'];	
     $objRequest->reqhalaman = $_POST['reqhalaman'];
     $objRequest->reqtahun = $_POST['reqtahun'];	
     $objRequest->reqsummary = $_POST['reqsummary'];
-    $objRequest->reqemail = $_POST['reqemail'];
-    $objRequest->idgenre = $_POST['idgenre'];		 
+    $objRequest->idgenre = $_POST['genre'];
+    $objRequest->userid = $_SESSION['userid'];
 				
 	if(isset($_GET['reqid'])) {
 		$objRequest->reqid = $_GET['reqid'];
@@ -49,22 +49,17 @@ if(isset($_POST['btnSubmit'])){
 <div class="col-md-6">			
   <h4 class="title py-4"><span class="text"><strong>Request Book</strong></span></h4>
     <form action="" method="post">
-	<table class="table" border="0">
+	<table class="table" border="0" method="POST">
         <tr>
             <td>Email</td>
             <td>:</td>
-            <td><input type="email" class="form-control" name="reqemail" value="<?php echo $objRequest->reqemail; ?>"></td>
+            <td><input type="email" class="form-control" name="reqemail" readonly value="<?php echo $objUser->userid=$_SESSION['email']; ?>"></td>
         </tr>	
         <tr>
             <td>Tanggal</td>
             <td>:</td>
-            <td><input type="date" class="form-control" name="date" value="<?php echo $objRequest->reqdate; ?>"></td>
+            <td><input type="date" class="form-control" readonly name="reqdate" value="<?php echo date('Y-m-d'); ?>"></td>
         </tr>
-        <tr>
-            <td>Request ID</td>
-            <td>:</td>
-            <td><input type="text" class="form-control" name="reqid" value="<?php echo $objRequest->reqid; ?>"></td>
-        </tr>	
         <tr>
             <td>Judul</td>
             <td>:</td>
@@ -77,11 +72,12 @@ if(isset($_POST['btnSubmit'])){
             <select name="genre" class="form-control">
                 <option value="">--Pilih Genre--</option>
                 <?php		
-                    foreach ($genreList as $genre){
-                        if($objRequest->idgenre == $genre->idgenre)
-                            echo '<option selected="true" value="'.$objRequest->idgenre.'">'.$genre->namagenre.'</option>';
+                $genrebuku = array("1"=>"History", "2"=>"Adventure", "3"=>"Fantasy", "4"=>"Science-Fiction", "5"=>"Humor", "6"=>"Horror", "7"=>"Romance", "8"=>"Thriller", "9"=>"Other");
+                    foreach ($genrebuku as $key => $value){
+                        if($objRequest->idgenre == $key)
+                            echo '<option selected="true" value="'.$key.'">'.$value.'</option>';
                         else
-                            echo '<option value="'. $objRequest->idgenre .'">'.$genre->namagenre.'</option>';
+                            echo '<option value="'. $key .'">'.$value.'</option>';
                     } 
                 ?>	
                 </select>	
@@ -100,17 +96,17 @@ if(isset($_POST['btnSubmit'])){
         <tr>
             <td>Halaman</td>
             <td>:</td>
-            <td><input type="text" class="form-control" name="reqhalaman" value="<?php echo $objRequest->reqhalaman; ?>"></td>
+            <td><input type="number" class="form-control" name="reqhalaman" value="<?php echo $objRequest->reqhalaman; ?>"></td>
         </tr>
         <tr>
             <td>Tahun</td>
             <td>:</td>
-            <td><input type="text" class="form-control" name="reqtahun" value="<?php echo $objRequest->reqtahun; ?>"></td>
+            <td><input type="number" class="form-control" name="reqtahun" value="<?php echo $objRequest->reqtahun; ?>"></td>
         </tr>	
         <tr>
             <td>Summary</td>
             <td>:</td>
-            <td><textarea class="form-control" name="reqsummary"><?php echo $objRequest->summary; ?></textarea></td>
+            <td><textarea class="form-control" name="reqsummary"><?php echo $objRequest->reqsummary; ?></textarea></td>
         </tr>	
 
         <tr>

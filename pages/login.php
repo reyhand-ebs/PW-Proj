@@ -1,5 +1,4 @@
 <?php
-include('./inc.koneksi.php');
 require_once('./class/class.user.php');
 
 if (isset($_POST['btnLogin'])) {

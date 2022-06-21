@@ -12,6 +12,8 @@
 <body>
     <div class="container py-5 pb-5">
         <h2 class="pb-5"><strong>User List</strong></h2>
+        <a class="btn btn-success" href="dashboardadmin.php?p=user">Add</a>
+        <br><br>
         <table class="table table-bordered">
             <thead>
                 <tr class="text-center">
@@ -43,8 +45,8 @@
                         echo '<td>' . $dataUser->fname . ' ' . $dataUser->lname . '</td>';
                         echo '<td>' . $dataUser->email . '</td>';
                         echo '<td>' . $dataUser->nohp . '</td>';
-                        echo '<td class="text-center"><a class="btn btn-warning btn-sm"  href="userlist.php?p=user&iduser=' . $dataUser->userid . '">Edit</a> |
-   					          <a class="btn btn-danger btn-sm"  href="dashboardadmin.php?p=deleteuser&iduser=' . $dataUser->userid . '" 
+                        echo '<td class="text-center"><a class="btn btn-warning btn-sm"  href="dashboardadmin.php?p=user&userid=' . $dataUser->userid . '">Edit</a> |
+   					          <a class="btn btn-danger btn-sm"  href="dashboardadmin.php?p=deleteuser&userid=' . $dataUser->userid . '" 
 							  onclick="return confirm(\'Apakah anda yakin ingin menghapus?\')">Delete</a>
 							  </td>';
                         echo '</tr>';

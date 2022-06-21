@@ -5,8 +5,11 @@ $objUser = new User();
 if (isset($_POST['setting'])) {
     $objUser->fname = $_POST['fname'];
     $objUser->lname = $_POST['lname'];
-    $objUser->password = $_POST['password'];
+	$objUser->email = $_POST['email'];	
     $objUser->nohp = $_POST['nohp'];
+    $objUser->role = $_POST['role'];
+    $password = $_POST['password'];
+    $objUser->password = password_hash($password, PASSWORD_DEFAULT);
     $isSuccessUpload = false;
 
     if (file_exists($_FILES['foto']['tmp_name']) || is_uploaded_file($_FILES['foto']['tmp_name'])) {
@@ -27,7 +30,7 @@ if (isset($_POST['setting'])) {
         echo '<script> window.location = "' . $_SERVER['REQUEST_URI'] . '";</script>';
     }
 } else if (isset($_GET['userid'])) {
-    $objUser->iduser = $_GET['userid'];
+    $objUser->userid = $_GET['userid'];
     $objUser->SelectOneUser();
 }
 ?>
@@ -63,22 +66,22 @@ if (isset($_POST['setting'])) {
                         <tr>
                             <td>User ID</td>
                             <td>:</td>
-                            <td><input type="text" class="form-control" name="userid" readonly value="<?php echo $objUser->userid = $_SESSION['userid']; ?>"></td>
+                            <td><input type="text" class="form-control" name="userid" readonly value="<?php echo $objUser->userid=$_SESSION['userid']; ?>"></td>
+                        </tr>
+                        <tr>
+                            <td>Role</td>
+                            <td>:</td>
+                            <td><input type="text" class="form-control" name="role" readonly value="<?php echo $objUser->userid=$_SESSION['idrole']; ?>"></td>
                         </tr>
                         <tr>
                             <td>First Name</td>
                             <td>:</td>
-                            <td><input type="text" class="form-control" name="fname" value="<?php echo $objUser->userid = $_SESSION['fname']; ?>"></td>
+                            <td><input type="text" class="form-control" name="fname" value="<?php echo $objUser->userid=$_SESSION['fname']; ?>"></td>
                         </tr>
                         <tr>
                             <td>Last Name</td>
                             <td>:</td>
-                            <td><input type="text" class="form-control" name="lname" value="<?php echo $objUser->userid = $_SESSION['lname']; ?>"></td>
-                        </tr>
-                        <tr>
-                            <td>Email</td>
-                            <td>:</td>
-                            <td><input type="email" class="form-control" name="email" readonly value="<?php echo $objUser->userid = $_SESSION['email']; ?>"></td>
+                            <td><input type="text" class="form-control" name="lname" value="<?php echo $objUser->userid=$_SESSION['lname']; ?>"></td>
                         </tr>
                     </table>
                 </div>
@@ -86,19 +89,19 @@ if (isset($_POST['setting'])) {
                     <table class="table" border="0">
                         <tr>
                         <tr>
+                            <td>Email</td>
+                            <td>:</td>
+                            <td><input type="email" class="form-control" name="email" value="<?php echo $objUser->userid=$_SESSION['email']; ?>"></td>
+                        </tr>
+                        <tr>
                             <td>Mobile Number</td>
                             <td>:</td>
-                            <td><input type="text" class="form-control" name="nohp" value="<?php echo $objUser->nohp; ?>"></td>
+                            <td><input type="number" class="form-control" name="nohp" value="<?php echo $objUser->nohp; ?>"></td>
                         </tr>
                         <tr>
                             <td>Change Password</td>
                             <td>:</td>
-                            <td><input type="password" class="form-control" name="changepassword" value="<?php echo $objUser->password; ?>"></td>
-                        </tr>
-                        <tr>
-                            <td>Confirm Password</td>
-                            <td>:</td>
-                            <td><input type="password" class="form-control" name="confirmpassword" value=""></td>
+                            <td><input type="password" class="form-control" name="password" value="<?php echo $objUser->password; ?>"></td>
                         </tr>
                     </table>
                 </div>

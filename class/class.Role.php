@@ -52,17 +52,17 @@
 		}
 		
 		public function SelectAllRole() {
-            $sql = "SELECT * FROM role";
-				
-			$result = mysqli_query($this->connection, $sql);	
+            $sql = "SELECT role FROM role;";
+			$result = $this->connection->query($sql);
+
 			$arrResult = Array();
 			$cnt=0;
-			if(mysqli_num_rows($result) > 0){				
-				while ($data = mysqli_fetch_array($result))
+			if($result->rowCount() > 0){
+				while($data= $result->fetch(PDO::FETCH_OBJ))
 				{
 					$objRole = new Role(); 
-					$objRole->idRole=$data['idRole'];
-					$objRole->role=$data['role'];
+					//$objRole->idRole=$data->idRole;
+					$objRole->role=$data->role;
 					$arrResult[$cnt] = $objRole;
 					$cnt++;
 				}

@@ -50,7 +50,7 @@
                     $no = 1;
                     foreach ($arrayResult as $dataBuku) {
                 ?>
-                        <div class="col card mb-3 mx-2">
+                        <div class="col-3 card mb-3 mx-2">
                             <div class="row g-0">
                                 <div class="col-sm-6 py-2">
                                     <img class="img-fluid rounded" alt="<?php echo $dataBuku->judul; ?>" src="./img/books/<?php echo $dataBuku->cover; ?>">

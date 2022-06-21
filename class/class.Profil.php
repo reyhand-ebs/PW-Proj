@@ -8,6 +8,9 @@
 		private $history = '';
 		private $idUser = '';
 
+		private $hasil = false;
+		private $message ='';
+
 		public function __get($atribute) {
 			if (property_exists($this, $atribute)) {
 				return $this->$atribute;

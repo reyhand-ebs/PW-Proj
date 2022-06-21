@@ -4,6 +4,7 @@ class Request extends Connection {
 	private $reqdate = '';
 	private $reqemail = '';
 	private $idgenre = '';
+	private $namagenre ='';
 	private $reqjudul = '';
 	private $reqpenulis = '';
 	private $reqpenerbit = '';
@@ -28,8 +29,8 @@ class Request extends Connection {
 	}		
 
 	public function AddRequest(){
-		$sql = "INSERT INTO request (reqid, reqdate, reqjudul, reqpenulis, reqpenerbit, reqhalaman, reqtahun, status, reqsummary, reqemail, idgenre) 
-				VALUES ($this->reqid, '$this->reqdate', '$this->reqjudul', '$this->reqpenulis', '$this->reqpenerbit', '$this->reqhalaman', '$this->reqtahun', 'Waiting', '$this->summary', '$this->reqemail', '$this->idgenre')";
+		$sql = "INSERT INTO request (reqdate, reqjudul, reqpenulis, reqpenerbit, reqhalaman, reqtahun, status, reqsummary, userid, idgenre) 
+				VALUES ('$this->reqdate', '$this->reqjudul', '$this->reqpenulis', '$this->reqpenerbit', '$this->reqhalaman', '$this->reqtahun', 'Waiting', '$this->summary', '$this->userid','$this->idgenre')";
 		
 		$this->hasil = $this->connection->exec($sql);
 		
@@ -46,9 +47,21 @@ class Request extends Connection {
 				WHERE reqid = $this->reqid";
 		$this->hasil = $this->connection->exec($sql);
 		if($this->hasil)
-			$this->message ='Data berhasil diubah!';
+			$this->message ='Data disetujui!';
 		else
-			$this->message ='Data gagal diubah!';
+			$this->message ='Data gagal disetujui!';
+	}
+
+	public function UpdateTolakRequest(){
+		$this->connect();
+		$sql = "UPDATE request
+				SET status ='Rejected'
+				WHERE reqid = $this->reqid";
+		$this->hasil = $this->connection->exec($sql);
+		if($this->hasil)
+			$this->message ='Data ditolak!';
+		else
+			$this->message ='Data gagal ditolak!';
 	}
 
 	public function DeleteRequest(){
@@ -63,7 +76,7 @@ class Request extends Connection {
 		
 	public function SelectAllRequest(){
         $this->connect();
-		$sql = "SELECT r.*, g.namagenre FROM request r, genre g WHERE r.idgenre=g.idgenre ORDER BY reqid";
+		$sql = "SELECT r.*, g.namagenre FROM request r, genre g WHERE r.idgenre=g.idgenre AND status='Waiting' ORDER BY reqid";
 		$result = $this->connection->query($sql);
 
 		$arrResult = Array();
@@ -72,9 +85,9 @@ class Request extends Connection {
 			while ($data= $result->fetch(PDO::FETCH_OBJ)) {
 				$objRequest = new Request();
 				$objRequest->reqid=$data->reqid;
-				$objRequest->reqemail=$data->reqemail;
             	$objRequest->reqdate=$data->reqdate;
-            	$objRequest->idgenre=$data->namagenre;
+            	$objRequest->idgenre=$data->idgenre;
+				$objRequest->namagenre=$data->namagenre;
 				$objRequest->reqjudul=$data->reqjudul;
             	$objRequest->reqpenulis=$data->reqpenulis;
             	$objRequest->reqpenerbit=$data->reqpenerbit;

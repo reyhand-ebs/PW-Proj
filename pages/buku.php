@@ -1,20 +1,16 @@
 <?php 
-//include('./inc.koneksi.php');
+
 require_once('./class/class.buku.php');
-require_once('./class/class.genre.php');
 $objBuku = new Buku();
-$objGenre = new Genre();
-$genreList = $objGenre->SelectAllGenre();
 
 if(isset($_POST['btnSubmit'])){
-    $objBuku->idbuku = $_POST['idbuku'];
 	$objBuku->judul = $_POST['judul'];	
     $objBuku->penulis = $_POST['penulis'];
 	$objBuku->penerbit = $_POST['penerbit'];	
     $objBuku->halaman = $_POST['halaman'];
     $objBuku->tahun = $_POST['tahun'];	
     $objBuku->summary = $_POST['summary'];
-    $objBuku->namagenre->idgenre = $_POST['genrebuku'];	 
+    $objBuku->genrebuku = $_POST['genrebuku'];	 
 				
 	if(isset($_GET['idbuku'])) {
 		$objBuku->idbuku = $_GET['idbuku'];
@@ -48,10 +44,19 @@ if(isset($_POST['btnSubmit'])){
     <form action="" method="post">
 	<table class="table" border="0">
         <tr>
-            <td>Id Buku</td>
+            <td>Cover</td>
             <td>:</td>
-            <td><input type="text" class="form-control" name="judul" readonly value="<?php echo $objBuku->idbuku; ?>"></td>
-        </tr>	
+            <td><?php
+                    if ($objBuku->cover != null)
+                        echo '<img class="img-rounded img-responsive" src="img/books/' . $objBuku->cover . '">';
+                    else
+                        echo '<img class="img-rounded img-responsive" src="img/books/defaultbook.jpg">';
+                    ?>
+                    <input type="hidden" name="photo" value="<?php echo $objBuku->cover; ?>">
+                    <br><br>
+                    <span>Browse Picture</span>
+                    <input type="file" name="cover"></input></td>
+        </tr>
         <tr>
             <td>Judul</td>
             <td>:</td>
@@ -61,16 +66,17 @@ if(isset($_POST['btnSubmit'])){
             <td>Genre</td>
             <td>:</td>
             <td>
-            <select name="genrebuku" class="form-control">
-                <option value="">---Please select genre---</option>
-                <?php		
-                    foreach ($genreList as $genre){
-                        if($objBuku->namagenre->idgenre == $genre->idgenre)
-                            echo '<option selected="true" value="'.$genre->idgenre.'">'.$genre->namagenre.'</option>';
-                        else
-                            echo '<option value="'.$genre->idgenre.'">'.$genre->namagenre.'</option>';
-                    } 
-                ?>	
+                <select name="genrebuku" class="form-control">
+                    <option value="">---Please select genre---</option>
+                    <?php		
+                        $genrebuku = array("1"=>"History", "2"=>"Adventure", "3"=>"Fantasy", "4"=>"Science-Fiction", "5"=>"Humor", "6"=>"Horror", "7"=>"Romance", "8"=>"Thriller", "9"=>"Other");
+                        foreach ($genrebuku as $key => $value){
+                            if($objBuku->genrebuku == $key)
+                                echo '<option selected="true" value="'.$key.'">'.$key.' - '.$value.'</option>';
+                            else
+                                echo '<option value="'. $key .'">'.$key.' - '.$value.'</option>';
+                        } 
+                    ?>	
                 </select>	
             </td>
         </tr>

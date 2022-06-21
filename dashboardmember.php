@@ -1,4 +1,5 @@
 <?php 
+    include('./inc.koneksi.php');
  	require_once('pages/authorization_member.php');
 ?>
 <!DOCTYPE html>

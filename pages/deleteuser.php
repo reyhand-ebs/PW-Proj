@@ -1,7 +1,6 @@
 <?php
 if(isset($_GET['userid'])) {
-    include('./inc.koneksi.php');
-	require_once('./class/class.User.php');
+	require_once('./class/class.user.php');
 	$objUser = new User(); 
 	$objUser->userid = $_GET['userid'];
 	

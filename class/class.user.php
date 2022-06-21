@@ -28,7 +28,7 @@ class User extends Connection {
 
 	public function AddUser(){
 		$sql = "INSERT INTO user(email, password, fname, lname, nohp, foto, idrole)
-				VALUES ('$this->email', '$this->password', '$this->fname', '$this->lname', '$this->nohp', '$this->foto', 'role2')";				
+				VALUES ('$this->email', '$this->password', '$this->fname', '$this->lname', '$this->nohp', '$this->foto', '$this->idrole')";				
 		$this->hasil = $this->connection->exec($sql);
 				
 		if($this->hasil)
@@ -39,7 +39,7 @@ class User extends Connection {
 	
 	public function UpdateUser(){
 		$sql = "UPDATE user SET email = '$this->email', password='$this->password', fname='$this->fname', lname='$this->lname', nohp='$this->nohp', foto='$this->foto'
-		WHERE iduser = '$this->iduser'";
+		WHERE userid = '$this->userid'";
 		$this->hasil = $this->connection->exec($sql);
 			
 		if($this->hasil)
@@ -78,7 +78,7 @@ class User extends Connection {
 	}
 	
 	public function SelectOneUser(){
-		$sql = "SELECT * FROM user WHERE userid = '$this->userid'";
+		$sql = "SELECT u.*, r.role FROM user u, role r WHERE u.idrole = r.idrole AND userid = '$this->userid'";
 		$result = $this->connection->query($sql);
 		
 		if($result->rowCount() == 1){
@@ -92,6 +92,7 @@ class User extends Connection {
 				$this->nohp = $data->nohp;
 				$this->foto = $data->foto;
 				$this->idrole = $data->idrole;
+				$this->role=$data->role;
 			}
 		}		
 	}

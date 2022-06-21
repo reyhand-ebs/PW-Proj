@@ -1,23 +1,10 @@
 <?php
-require_once('./class/class.request.php'); 	
-require_once('./class/class.buku.php'); 	
+require_once('./class/class.request.php'); 		
 
 if(isset($_GET['reqid'])){	
 	$objRequest = new Request(); 
-	$objRequest->reqid = $_GET['reqid'];
-	//$objRequest->reqemail = $_GET['reqemail'];	
+	$objRequest->reqid = $_GET['reqid'];	
 	$objRequest->UpdateSetujuRequest();
-
-	//$objBuku->idbuku = $_POST['idbuku'];
-	$objBuku = new Buku();
-	$objBuku->judul = $_POST['reqjudul'];	
-    $objBuku->penulis = $_POST['reqpenulis'];
-	$objBuku->penerbit = $_POST['reqpenerbit'];	
-    $objBuku->halaman = $_POST['reqhalaman'];
-    $objBuku->tahun = $_POST['reqtahun'];	
-    $objBuku->summary = $_POST['reqsummary'];
-    $objBuku->idgenre = $_POST['idgenre'];	 
-	$objBuku->AddBuku();
 
 	/*if ($objBuku->hasil) {
 		$message =  file_get_contents('templateemail.html');
@@ -50,8 +37,9 @@ if(isset($_GET['reqid'])){
 	}*/
 
 	echo "<script> alert('$objRequest->message'); </script>";
+	echo "<script> alert('$objBuku->message'); </script>";
 	echo "<script>window.location = 'dashboardadmin.php?p=requestedlist'</script>";					
-}
+} 
 else{		
 	echo '<script>window.history.back()</script>';	
 }
