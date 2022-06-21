@@ -27,7 +27,7 @@ if (isset($_POST['btnSubmit'])) {
 					</span>
 					<span style="font-family: Arial, Helvetica, sans-serif; font-size: 15px; color: #57697e;">
 						Email : ' . $objUser->email . '<br>
-						Password : ' . $objUser->password . '
+						Password : ' . $objUser->password = $_POST['password'] . '
 					</span>';
 			$footer = 'Silakan login untuk mengakses sistem.';
 

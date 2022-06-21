@@ -22,7 +22,7 @@ if(isset($_POST['btnSubmit'])){
 				
 	if(isset($_GET['reqid'])) {
 		$objRequest->reqid = $_GET['reqid'];
-		$objRequest->UpdateRequest();
+		$objRequest->UpdateSetujuRequest();
 	} else {	
 		$objRequest->AddRequest();
 	}
@@ -64,7 +64,7 @@ if(isset($_POST['btnSubmit'])){
             <td>Judul</td>
             <td>:</td>
             <td><input type="text" class="form-control" name="reqjudul" value="<?php echo $objRequest->reqjudul; ?>"></td>
-        </tr>		
+        </tr>
         <tr>
             <td>Genre</td>
             <td>:</td>

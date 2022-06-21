@@ -1,5 +1,4 @@
 <?php 
-
 require_once('./class/class.buku.php');
 $objBuku = new Buku();
 

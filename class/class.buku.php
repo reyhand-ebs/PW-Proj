@@ -27,6 +27,11 @@
 			}
 		}
 
+		function __construct() {
+			parent::__construct();
+			$this->genre = new Genre();
+		}
+
 		public function AddBuku() {
 			$sql = "INSERT INTO buku(cover, judul, halaman, tahun, penulis, penerbit, summary, genrebuku) 
 		            VALUES ('$this->cover', '$this->judul', '$this->halaman', '$this->tahun', '$this->penulis', '$this->penerbit', '$this->summary', '1')";
