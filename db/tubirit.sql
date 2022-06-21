@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 21, 2022 at 06:30 PM
+-- Generation Time: Jun 21, 2022 at 06:59 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -45,10 +45,10 @@ CREATE TABLE `buku` (
 
 INSERT INTO `buku` (`idbuku`, `cover`, `judul`, `halaman`, `tahun`, `penulis`, `penerbit`, `summary`, `genrebuku`) VALUES
 (1, 'b001.jpg', 'Hujan', 320, 2016, 'Tere Liye', 'Gramedia', 'Novel ini menceritakan tentang Esok dan Lail sebagai salah satu tokoh utama, keduanya dipertemukan setelah gunung meletus pada tahun 2042. Efek letusan gunung yang dahsyat membuat seisi bumi menyisihkan manusia dan tersisa sekitar 10% manusia.', '4'),
-(18, '', 'Api Asmara', 231, 2019, 'Tere Liye', 'Gramedia', '', '1'),
-(19, '', 'Api Asmara', 231, 2019, 'Tere Liye', 'Gramedia', 'aku', '1'),
-(20, 'default.jpg', 'Api Asmara', 231, 2019, 'Tere Liye', 'Gramedia', 'jsaskjdskjc kdsj', '1'),
-(28, '', 'Api Asmara', 321, 2020, 'Tere Liye', 'Gramedia', 'jnvjksnvksndkf', '1');
+(18, 'defaultbook.jpg', 'Api Asmara', 231, 2019, 'Tere Liye', 'Gramedia', '', '1'),
+(19, 'defaultbook.jpg', 'Api Asmara', 231, 2019, 'Tere Liye', 'Gramedia', 'aku', '1'),
+(20, 'defaultbook.jpg', 'Api Asmara', 231, 2019, 'Tere Liye', 'Gramedia', 'jsaskjdskjc kdsj', '1'),
+(28, 'defaultbook.jpg', 'Api Asmara', 321, 2020, 'Tere Liye', 'Gramedia', 'jnvjksnvksndkf', '1');
 
 -- --------------------------------------------------------
 
